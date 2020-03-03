@@ -34,13 +34,8 @@ import org.hisp.dhis.antlr.literal.DefaultLiteral;
 import org.hisp.dhis.parser.expression.antlr.ExpressionBaseVisitor;
 import org.hisp.dhis.parser.expression.antlr.ExpressionParser;
 
-import static org.hisp.dhis.antlr.AntlrParserUtils.castBoolean;
-import static org.hisp.dhis.antlr.AntlrParserUtils.castDouble;
-import static org.hisp.dhis.antlr.AntlrParserUtils.castString;
-import static org.hisp.dhis.parser.expression.antlr.ExpressionParser.BooleanLiteralContext;
-import static org.hisp.dhis.parser.expression.antlr.ExpressionParser.ExpressionContext;
-import static org.hisp.dhis.parser.expression.antlr.ExpressionParser.NumericLiteralContext;
-import static org.hisp.dhis.parser.expression.antlr.ExpressionParser.StringLiteralContext;
+import static org.hisp.dhis.antlr.AntlrParserUtils.*;
+import static org.hisp.dhis.parser.expression.antlr.ExpressionParser.*;
 
 /**
  * Generic traversal of the ANTLR4 expression parse tree using the

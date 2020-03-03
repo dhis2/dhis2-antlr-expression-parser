@@ -28,9 +28,9 @@ package org.hisp.dhis.antlr.operator;
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import java.math.BigDecimal;
 import java.util.List;
 
-import static java.lang.Math.pow;
 import static org.hisp.dhis.antlr.AntlrParserUtils.castDouble;
 
 /**
@@ -44,7 +44,8 @@ public class AntlrOperatorMathPower
     @Override
     public Object compute( List<Object> values )
     {
-        return pow ( castDouble( values.get( 0 ) ),
-            castDouble( values.get( 1 ) ) );
+        return BigDecimal.valueOf( castDouble( values.get( 0 ) ) )
+            .pow( BigDecimal.valueOf( castDouble( values.get( 1 ) ) ).intValue() )
+            .doubleValue();
     }
 }

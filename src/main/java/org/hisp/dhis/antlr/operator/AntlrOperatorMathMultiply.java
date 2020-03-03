@@ -28,6 +28,7 @@ package org.hisp.dhis.antlr.operator;
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import static org.hisp.dhis.antlr.AntlrParserUtils.castDouble;
@@ -43,7 +44,8 @@ public class AntlrOperatorMathMultiply
     @Override
     public Object compute( List<Object> values )
     {
-        return castDouble( values.get( 0 ) )
-            * castDouble( values.get( 1 ) );
+        return BigDecimal.valueOf( castDouble( values.get( 0 ) ) )
+            .multiply( BigDecimal.valueOf( castDouble( values.get( 1 ) ) ) )
+            .doubleValue();
     }
 }
