@@ -213,13 +213,15 @@ public class AntlrParserUtils
 
     private static Object castBooleanObject( Boolean object, Class<?> clazz )
     {
-        if (clazz == String.class) {
+        if (clazz == String.class)
+        {
             return object.toString();
         }
         else if (clazz == Boolean.class )
         {
             return object;
-        } else
+        }
+        else
         {
             throw new ParserExceptionWithoutContext( "Found boolean value when expecting " + clazz.getSimpleName() );
         }
