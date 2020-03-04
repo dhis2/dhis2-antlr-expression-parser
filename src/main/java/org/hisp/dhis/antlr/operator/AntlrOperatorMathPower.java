@@ -51,6 +51,5 @@ public class AntlrOperatorMathPower
         return base
             .pow( exponent, MathContext.DECIMAL32 )
             .doubleValue();
-
     }
 }

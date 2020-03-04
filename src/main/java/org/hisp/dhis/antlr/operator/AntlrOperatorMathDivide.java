@@ -56,7 +56,6 @@ public class AntlrOperatorMathDivide
             return numerator
                 .divide( denominator )
                 .doubleValue();
-
         }
     }
 }
