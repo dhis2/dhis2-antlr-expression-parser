@@ -44,8 +44,18 @@ public class AntlrOperatorMathModulus
     @Override
     public Object compute( List<Object> values )
     {
-        return BigDecimal.valueOf( castDouble( values.get( 0 ) ) )
-            .remainder( BigDecimal.valueOf( castDouble( values.get( 1 ) ) ) )
-            .doubleValue();
+        BigDecimal numerator = BigDecimal.valueOf( castDouble( values.get( 0 ) ) );
+        BigDecimal denominator = BigDecimal.valueOf( castDouble( values.get( 1 ) ) );
+
+        if ( denominator.equals( BigDecimal.valueOf( 0.0 ) ) )
+        {
+            return Double.NaN;
+        }
+        else
+        {
+            return numerator
+                .remainder( denominator )
+                .doubleValue();
+        }
     }
 }
