@@ -32,9 +32,7 @@ import org.hisp.dhis.antlr.InternalParserException;
 
 import java.util.List;
 
-import static org.hisp.dhis.antlr.AntlrParserUtils.castBoolean;
-import static org.hisp.dhis.antlr.AntlrParserUtils.castDouble;
-import static org.hisp.dhis.antlr.AntlrParserUtils.castString;
+import static org.hisp.dhis.antlr.AntlrParserUtils.*;
 
 /**
  * Abstract class for compare operators

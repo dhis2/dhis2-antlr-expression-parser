@@ -196,9 +196,9 @@ public class AntlrParserUtils
             return castStringObject( (String) object, clazz );
         }
 
-        if ( object instanceof Boolean && clazz != Boolean.class )
+        if ( object instanceof Boolean )
         {
-            throw new ParserExceptionWithoutContext( "Found boolean value when expecting " + clazz.getSimpleName() );
+            return castBooleanObject( (Boolean) object, clazz );
         }
 
         try
@@ -208,6 +208,22 @@ public class AntlrParserUtils
         catch ( Exception e )
         {
             throw new ParserExceptionWithoutContext( "Could not cast value to " + clazz.getSimpleName() );
+        }
+    }
+
+    private static Object castBooleanObject( Boolean object, Class<?> clazz )
+    {
+        if (clazz == String.class)
+        {
+            return object.toString();
+        }
+        else if (clazz == Boolean.class )
+        {
+            return object;
+        }
+        else
+        {
+            throw new ParserExceptionWithoutContext( "Found boolean value when expecting " + clazz.getSimpleName() );
         }
     }
 
@@ -233,6 +249,17 @@ public class AntlrParserUtils
             catch ( Exception e )
             {
                 throw new ParserExceptionWithoutContext( "Found '" + object + "' when expecting a number" );
+            }
+        }
+        else if ( clazz == Boolean.class )
+        {
+            try
+            {
+                return Boolean.parseBoolean( object );
+            }
+            catch ( Exception e )
+            {
+                throw new ParserExceptionWithoutContext( "Found '" + object + "' when expecting a boolean" );
             }
         }
         else if ( clazz == String.class )
