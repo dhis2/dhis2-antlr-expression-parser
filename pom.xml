@@ -7,7 +7,7 @@
   <packaging>jar</packaging>
   <name>DHIS Antlr Expression Parser</name>
   <groupId>org.hisp.dhis.parser</groupId>
-  <version>1.0.4</version>
+  <version>1.0.5</version>
 
   <dependencies>
 
@@ -88,7 +88,7 @@
     <repository>
       <id>github</id>
       <name>Antlr Expression Parser</name>
-      <url>https://maven.pkg.github.com/dhis2/dhis2-rule-engine</url>
+      <url>https://maven.pkg.github.com/dhis2/dhis2-antlr-expression-parser</url>
     </repository>
   </distributionManagement>
 </project>
