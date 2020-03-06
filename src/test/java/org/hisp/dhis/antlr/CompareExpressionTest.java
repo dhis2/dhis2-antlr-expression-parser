@@ -13,6 +13,17 @@ public class CompareExpressionTest
     private TestExpressionVisitor visitor = new TestExpressionVisitor();
 
     @Test
+    public void testGreaterForDifferentTypes() {
+//        assertEquals( true, evaluate( "'2' > 1" ) );
+//        assertEquals( false, evaluate( "1 > '2'" ) );
+//        assertEquals( false, evaluate( "'1' > '2'" ) );
+//        assertEquals( true, evaluate( "'1' > '-2'" ) );
+        assertEquals( true, evaluate( "'-1' > '-2'" ) );
+        assertEquals( false, evaluate( "'-1' > '2'" ) );
+        assertEquals( false, evaluate( "'2' > ( 1 + 1 )" ) );
+    }
+
+    @Test
     public void testGreater() {
         assertEquals( true, evaluate( "2 > 1" ) );
         assertEquals( false, evaluate( "1 > 2" ) );
