@@ -36,6 +36,7 @@ public class MathExpressionTest
         assertEquals( 1.0, evaluate( "1/1" ) );
         assertEquals( 0.5, evaluate( "1/2" ) );
         assertEquals( -0.7, evaluate( "-1.4/( 1 + 1 )" ) );
+        assertEquals( Double.NaN, evaluate( "1.0/( 1 - 1 )" ) );
     }
 
     @Test
@@ -50,6 +51,9 @@ public class MathExpressionTest
         assertEquals( 1.0, evaluate( "1^10" ) );
         assertEquals( 25.0, evaluate( "5^2" ) );
         assertEquals( 1.96, evaluate( "1.4^( 1 + 1 )" ) );
+        assertEquals( 1.0, evaluate( "1.4^( 1 - 1 )" ) );
+        assertEquals( 4.0, evaluate( "2^2" ) );
+        assertEquals( 0.25, evaluate( "2^-2" ) );
     }
 
     @Test
@@ -57,6 +61,7 @@ public class MathExpressionTest
         assertEquals( 1.0, evaluate( "1%2" ) );
         assertEquals( 1.0, evaluate( "5%2" ) );
         assertEquals( 1.4, evaluate( "1.4%( 1 + 1 )" ) );
+        assertEquals( Double.NaN, evaluate( "1.0%( 1 - 1 )" ) );
     }
 
     private Object evaluate(String expression) {

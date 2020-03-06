@@ -28,6 +28,7 @@ package org.hisp.dhis.antlr.operator;
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import org.apache.commons.lang3.math.NumberUtils;
 import org.hisp.dhis.antlr.InternalParserException;
 
 import java.util.List;
@@ -57,13 +58,13 @@ public abstract class AntlrOperatorCompare
         {
             throw new InternalParserException( "found null when comparing '" + o1 + "' with '" + o2 + "'" );
         }
-        else if ( o1 instanceof Double )
+        else if ( o1 instanceof Double  )
         {
             return ((Double) o1).compareTo( castDouble( o2 ) );
         }
-        else if ( o2 instanceof Double )
+        else if ( o1 instanceof String && NumberUtils.isCreatable((String) o1))
         {
-            return ((Double) o2).compareTo( castDouble( o1 ) );
+            return Double.valueOf((String) o1).compareTo( castDouble( o2 ) );
         }
         else if ( o1 instanceof String )
         {

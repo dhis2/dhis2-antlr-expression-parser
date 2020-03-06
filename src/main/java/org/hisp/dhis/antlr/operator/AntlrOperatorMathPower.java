@@ -29,6 +29,7 @@ package org.hisp.dhis.antlr.operator;
  */
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.util.List;
 
 import static org.hisp.dhis.antlr.AntlrParserUtils.castDouble;
@@ -44,8 +45,11 @@ public class AntlrOperatorMathPower
     @Override
     public Object compute( List<Object> values )
     {
-        return BigDecimal.valueOf( castDouble( values.get( 0 ) ) )
-            .pow( BigDecimal.valueOf( castDouble( values.get( 1 ) ) ).intValue() )
+        int exponent = BigDecimal.valueOf( castDouble( values.get( 1 ) ) ).intValue();
+        BigDecimal base = BigDecimal.valueOf( castDouble( values.get( 0 ) ) );
+
+        return base
+            .pow( exponent, MathContext.DECIMAL32 )
             .doubleValue();
     }
 }
