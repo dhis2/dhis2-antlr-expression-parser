@@ -35,7 +35,7 @@ jobs:
         with:
           java-version: 11.0.4
       - name: Release Maven package
-          uses: actions/action-maven-publish@v1
-          with:
-            nexus_username: ${{ secrets.nexus_username }}
-            nexus_password: ${{ secrets.nexus_password }}
+        uses: actions/action-maven-publish@v1
+        with:
+          nexus_username: ${{ secrets.nexus_username }}
+          nexus_password: ${{ secrets.nexus_password }}
