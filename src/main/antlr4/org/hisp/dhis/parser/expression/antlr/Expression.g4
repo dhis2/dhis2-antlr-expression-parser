@@ -36,6 +36,7 @@ expr
     |   it='isNotNull(' expr ')'
     |   it='isNull(' expr ')'
     |   it='least(' expr (',' expr )* ')'
+    |   expr '.' it= 'periodOffset(' WS* period=numericLiteral WS* ')'
 
     //  Aggergation functions (alphabetical)
 
@@ -225,6 +226,7 @@ VERTICAL_BAR_2      : '||';
 
 // Functions (alphabetical)
 
+PERIOD_OFFSET   : 'periodOffset(';
 FIRST_NON_NULL  : 'firstNonNull(';
 GREATEST        : 'greatest(';
 IF              : 'if(';
