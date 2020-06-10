@@ -36,7 +36,7 @@ expr
     |   it='isNotNull(' expr ')'
     |   it='isNull(' expr ')'
     |   it='least(' expr (',' expr )* ')'
-    |   expr '.' it= 'periodOffset(' WS* period=numericLiteral WS* ')'
+    |   expr '.' it= 'periodOffset(' WS* period=integerLiteral WS* ')'
 
     //  Aggergation functions (alphabetical)
 
@@ -171,6 +171,13 @@ programVariable   // (alphabtical)
 
 numericLiteral
     :   NUMERIC_LITERAL
+    |   INTEGER_LITERAL
+    ;
+
+integerLiteral
+    :   INTEGER_LITERAL
+    |   MINUS? INTEGER_LITERAL
+    |   PLUS? INTEGER_LITERAL
     ;
 
 programRuleStringVariableName
@@ -347,10 +354,15 @@ REPORTING_RATE_TYPE
     |   'EXPECTED_REPORTS'
     ;
 
+INTEGER_LITERAL
+    :   ('0' | [1-9] [0-9]*)
+    ;
+
 NUMERIC_LITERAL
     :   ('0' | [1-9] [0-9]*) ('.' [0-9]*)? Exponent?
     |   '.' [0-9]+ Exponent?
     ;
+
 
 BOOLEAN_LITERAL
     :   'true'
