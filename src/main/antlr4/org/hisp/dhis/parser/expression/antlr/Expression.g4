@@ -176,8 +176,8 @@ numericLiteral
 
 integerLiteral
     :   INTEGER_LITERAL
-    |   MINUS? INTEGER_LITERAL
-    |   PLUS? INTEGER_LITERAL
+    |   MINUS INTEGER_LITERAL
+    |   PLUS INTEGER_LITERAL
     ;
 
 programRuleStringVariableName
@@ -362,7 +362,6 @@ NUMERIC_LITERAL
     :   ('0' | [1-9] [0-9]*) ('.' [0-9]*)? Exponent?
     |   '.' [0-9]+ Exponent?
     ;
-
 
 BOOLEAN_LITERAL
     :   'true'
