@@ -36,6 +36,7 @@ expr
     |   it='isNotNull(' expr ')'
     |   it='isNull(' expr ')'
     |   it='least(' expr (',' expr )* ')'
+    |   expr '.' it= 'periodOffset(' WS* period=integerLiteral WS* ')'
 
     //  Aggergation functions (alphabetical)
 
@@ -170,6 +171,13 @@ programVariable   // (alphabtical)
 
 numericLiteral
     :   NUMERIC_LITERAL
+    |   INTEGER_LITERAL
+    ;
+
+integerLiteral
+    :   INTEGER_LITERAL
+    |   MINUS INTEGER_LITERAL
+    |   PLUS INTEGER_LITERAL
     ;
 
 programRuleStringVariableName
@@ -225,6 +233,7 @@ VERTICAL_BAR_2      : '||';
 
 // Functions (alphabetical)
 
+PERIOD_OFFSET   : 'periodOffset(';
 FIRST_NON_NULL  : 'firstNonNull(';
 GREATEST        : 'greatest(';
 IF              : 'if(';
@@ -343,6 +352,10 @@ REPORTING_RATE_TYPE
     |   'ACTUAL_REPORTS'
     |   'ACTUAL_REPORTS_ON_TIME'
     |   'EXPECTED_REPORTS'
+    ;
+
+INTEGER_LITERAL
+    :   ('0' | [1-9] [0-9]*)
     ;
 
 NUMERIC_LITERAL
