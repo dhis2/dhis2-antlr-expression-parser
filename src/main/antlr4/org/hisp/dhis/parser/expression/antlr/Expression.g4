@@ -198,6 +198,7 @@ programRuleVariableName
 
 programRuleVariablePart
     :   IDENTIFIER
+    |   INTEGER_LITERAL
     |   NUMERIC_LITERAL
     |   UID
     |   WS
