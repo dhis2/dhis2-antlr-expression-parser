@@ -51,15 +51,25 @@ import java.util.concurrent.TimeUnit;
  */
 public class Parser
 {
-    private static Cache<ParseTree> EXPRESSION_PARSE_TREES = new SimpleCacheBuilder<ParseTree>().forRegion( "expressionParseTrees" )
-        .expireAfterAccess( 10, TimeUnit.MINUTES )
-        .withInitialCapacity( 10000 )
-        .withMaximumSize( 50000 )
-        .build();
+    private static Cache<ParseTree> EXPRESSION_PARSE_TREES = null;
 
     // -------------------------------------------------------------------------
     // Logic
     // -------------------------------------------------------------------------
+
+    /**
+     * Initialize the cache.
+     *
+     * @return the cache initialized
+     */
+    public static void initializeCache()
+    {
+        EXPRESSION_PARSE_TREES = new SimpleCacheBuilder<ParseTree>().forRegion( "expressionParseTrees" )
+            .expireAfterAccess( 10, TimeUnit.MINUTES )
+            .withInitialCapacity( 10000 )
+            .withMaximumSize( 50000 )
+            .build();
+    }
 
     /**
      * Parses an expression and visits the parsed nodes using the ANTLR4
@@ -123,6 +133,10 @@ public class Parser
     {
         if (!useCache) {
             return createParseTree( expr );
+        }
+
+        if (EXPRESSION_PARSE_TREES == null ) {
+            initializeCache();
         }
 
         return EXPRESSION_PARSE_TREES.get( expr, new MappingFunction<ParseTree>()
