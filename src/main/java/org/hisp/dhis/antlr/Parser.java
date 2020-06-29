@@ -51,15 +51,23 @@ import java.util.concurrent.TimeUnit;
  */
 public class Parser
 {
-    private static Cache<ParseTree> EXPRESSION_PARSE_TREES = new SimpleCacheBuilder<ParseTree>().forRegion( "expressionParseTrees" )
-        .expireAfterAccess( 10, TimeUnit.MINUTES )
-        .withInitialCapacity( 10000 )
-        .withMaximumSize( 50000 )
-        .build();
+    private static Cache<ParseTree> EXPRESSION_PARSE_TREES = null;
 
     // -------------------------------------------------------------------------
     // Logic
     // -------------------------------------------------------------------------
+
+    /**
+     * Initialize the cache.
+     */
+    public static void initializeCache()
+    {
+        EXPRESSION_PARSE_TREES = new SimpleCacheBuilder<ParseTree>().forRegion( "expressionParseTrees" )
+            .expireAfterAccess( 10, TimeUnit.MINUTES )
+            .withInitialCapacity( 10000 )
+            .withMaximumSize( 50000 )
+            .build();
+    }
 
     /**
      * Parses an expression and visits the parsed nodes using the ANTLR4
@@ -67,11 +75,27 @@ public class Parser
      *
      * @param expr the expression to parse and visit
      * @param visitor the visitor instance
+     * @param useCache flag to use cache or by pass it
+     * @return the visitor value
+     */
+    public static Object visit( String expr, ExpressionBaseVisitor<Object> visitor, boolean useCache )
+    {
+        ParseTree parseTree = getParseTree( expr, useCache );
+
+        return visitor.visit( parseTree );
+    }
+
+    /**
+     * Parses an expression and visits the parsed nodes using the ANTLR4
+     * visitor pattern and using the cache for parse tree.
+     *
+     * @param expr the expression to parse and visit
+     * @param visitor the visitor instance
      * @return the visitor value
      */
     public static Object visit( String expr, ExpressionBaseVisitor<Object> visitor )
     {
-        ParseTree parseTree = getParseTree( expr );
+        ParseTree parseTree = getParseTree( expr, true );
 
         return visitor.visit( parseTree );
     }
@@ -85,7 +109,7 @@ public class Parser
      */
     public static void listen( String expr, ExpressionBaseListener listener )
     {
-        ParseTree parseTree = getParseTree( expr );
+        ParseTree parseTree = getParseTree( expr, true );
 
         ParseTreeWalker walker = new ParseTreeWalker();
 
@@ -103,8 +127,16 @@ public class Parser
      * @param expr the expression to parse.
      * @return the ANTLR4 parse tree.
      */
-    private static ParseTree getParseTree( String expr )
+    private static ParseTree getParseTree( String expr, boolean useCache )
     {
+        if (!useCache) {
+            return createParseTree( expr );
+        }
+
+        if (EXPRESSION_PARSE_TREES == null ) {
+            initializeCache();
+        }
+
         return EXPRESSION_PARSE_TREES.get( expr, new MappingFunction<ParseTree>()
         {
             @Override
