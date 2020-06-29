@@ -59,8 +59,6 @@ public class Parser
 
     /**
      * Initialize the cache.
-     *
-     * @return the cache initialized
      */
     public static void initializeCache()
     {
