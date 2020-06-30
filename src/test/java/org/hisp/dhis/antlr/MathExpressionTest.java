@@ -4,6 +4,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
@@ -33,9 +37,12 @@ public class MathExpressionTest
 
     @Test
     public void testDivide() {
+        BigDecimal doubleWithLotsOfDigitsAfterComma = BigDecimal.valueOf( (Double) evaluate( "10/3" ) ).round( MathContext.DECIMAL64 );
+        assertEquals( BigDecimal.valueOf( 3.333333333333333 ), doubleWithLotsOfDigitsAfterComma );
         assertEquals( 1.0, evaluate( "1/1" ) );
         assertEquals( 0.5, evaluate( "1/2" ) );
         assertEquals( -0.7, evaluate( "-1.4/( 1 + 1 )" ) );
+        assertEquals( 1.0, evaluate( "( 1 / 1000 ) * 1000" ) );
         assertEquals( Double.NaN, evaluate( "1.0/( 1 - 1 )" ) );
     }
 

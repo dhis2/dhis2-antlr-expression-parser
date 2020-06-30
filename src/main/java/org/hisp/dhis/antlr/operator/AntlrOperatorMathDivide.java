@@ -29,6 +29,8 @@ package org.hisp.dhis.antlr.operator;
  */
 
 import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.util.List;
 
 import static org.hisp.dhis.antlr.AntlrParserUtils.castDouble;
@@ -54,7 +56,7 @@ public class AntlrOperatorMathDivide
         else
         {
             return numerator
-                .divide( denominator )
+                .divide( denominator, MathContext.DECIMAL64 )
                 .doubleValue();
         }
     }
