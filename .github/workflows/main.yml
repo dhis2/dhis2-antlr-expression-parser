@@ -21,7 +21,7 @@ jobs:
       run: mvn clean install -DskipTests=false --update-snapshots -q
 
   artifact:
-    name: Publish - Nexus
+    name: Publish - GitHub Packages
     runs-on: ubuntu-18.04
     needs: unit-test
 
@@ -31,8 +31,5 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11.0.4
-      - name: Release Maven package
-        uses: samuelmeuli/action-maven-publish@v1
-        with:
-          nexus_username: ${{ secrets.nexus_username }}
-          nexus_password: ${{ secrets.nexus_password }}
+      - name: Publish artifact on GitHub Packages
+        run: mvn -B clean deploy -DskipTests

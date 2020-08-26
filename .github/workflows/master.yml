@@ -21,7 +21,7 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-maven-
     - name: Test
-      run: mvn clean install -DskipTests=false --update-snapshots -q
+      run: mvn clean install -DskipTests=false -Pmaster --update-snapshots -q
 
   artifact:
     name: Publish - GitHub Packages
@@ -35,6 +35,4 @@ jobs:
         with:
           java-version: 11.0.4
       - name: Publish artifact on GitHub Packages
-        run: mvn -B clean deploy -DskipTests
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: mvn -B clean deploy -Pmaster -DskipTests

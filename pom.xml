@@ -7,7 +7,7 @@
   <packaging>jar</packaging>
   <name>DHIS Antlr Expression Parser</name>
   <groupId>org.hisp.dhis.parser</groupId>
-  <version>1.0.7</version>
+  <version>1.0.8</version>
 
   <dependencies>
 
@@ -55,6 +55,69 @@
     <antlr4.listener>true</antlr4.listener>
   </properties>
 
+  <profiles>
+    <profile>
+      <id>branch</id>
+      <activation>
+        <activeByDefault>
+          true
+        </activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-enforcer-plugin</artifactId>
+            <version>3.0.0-M3</version>
+            <executions>
+              <execution>
+                <id>enforce-no-releases</id>
+                <goals>
+                  <goal>enforce</goal>
+                </goals>
+                <configuration>
+                  <rules>
+                    <requireSnapshotVersion>
+                      <message>No Releases Allowed!</message>
+                    </requireSnapshotVersion>
+                  </rules>
+                  <fail>true</fail>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>master</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-enforcer-plugin</artifactId>
+            <version>3.0.0-M3</version>
+            <executions>
+              <execution>
+                <id>enforce-no-snapshots</id>
+                <goals>
+                  <goal>enforce</goal>
+                </goals>
+                <configuration>
+                  <rules>
+                    <requireReleaseVersion>
+                      <message>No Snapshots Allowed!</message>
+                    </requireReleaseVersion>
+                  </rules>
+                  <fail>true</fail>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
   <build>
     <plugins>
       <plugin>
@@ -86,9 +149,8 @@
       <url>https://oss.sonatype.org/content/repositories/snapshots</url>
     </snapshotRepository>
     <repository>
-      <id>github</id>
-      <name>Antlr Expression Parser</name>
-      <url>https://maven.pkg.github.com/dhis2/dhis2-antlr-expression-parser</url>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
     </repository>
   </distributionManagement>
 </project>
