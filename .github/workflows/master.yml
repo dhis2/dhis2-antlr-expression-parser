@@ -21,7 +21,7 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-maven-
     - name: Test
-      run: mvn clean install -DskipTests=false -Pmaster --update-snapshots -q
+      run: mvn clean install -DskipTests=false --update-snapshots -q
 
   artifact:
     name: Publish - Nexus
