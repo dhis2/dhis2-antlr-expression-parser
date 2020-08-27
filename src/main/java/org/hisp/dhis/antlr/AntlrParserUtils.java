@@ -100,7 +100,6 @@ public class AntlrParserUtils
 
     /**
      * Casts object as Double, or throws exception.
-     * <p/>
      * If the object is null, return null.
      *
      * @param object the value to cast as a Double.
@@ -113,7 +112,6 @@ public class AntlrParserUtils
 
     /**
      * Casts object as Double, or throws exception.
-     * <p/>
      * If the object is null, returns a default.
      *
      * @param object the value to cast as a Double.
@@ -128,7 +126,6 @@ public class AntlrParserUtils
 
     /**
      * Casts object as Boolean, or throws exception.
-     * <p/>
      * If the object is null, return null.
      *
      * @param object the value to cast as a Boolean.
@@ -141,7 +138,6 @@ public class AntlrParserUtils
 
     /**
      * Casts object as Boolean, or throws exception.
-     * <p/>
      * If the object is null, returns a default.
      *
      * @param object the value to cast as a Boolean.
