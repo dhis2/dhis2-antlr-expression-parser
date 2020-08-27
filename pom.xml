@@ -92,12 +92,15 @@
 
   <profiles>
     <profile>
-      <id>branch</id>
+      <id>install</id>
       <activation>
         <activeByDefault>
           true
         </activeByDefault>
       </activation>
+    </profile>
+    <profile>
+      <id>branch</id>
       <build>
         <plugins>
           <plugin>
