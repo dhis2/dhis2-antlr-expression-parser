@@ -30,7 +30,6 @@ package org.hisp.dhis.antlr;
 
 /**
  * Exception without expression context, while parsing an expression.
- * <p/>
  * This exception is used for lower-level parsing errors that do not yet
  * have any expression context that shows where they occur. By catching
  * this exception, such context can be added and then the exception

@@ -7,7 +7,41 @@
   <packaging>jar</packaging>
   <name>DHIS Antlr Expression Parser</name>
   <groupId>org.hisp.dhis.parser</groupId>
-  <version>1.0.9</version>
+  <version>1.0.10-SNAPSHOT</version>
+
+  <description>Antlr Expression Parser</description>
+
+  <organization>
+    <name>UiO</name>
+    <url>http://www.dhis2.org</url>
+  </organization>
+
+  <developers>
+    <developer>
+      <name>Enrico Colasante</name>
+      <email>enrico@dhis2.org</email>
+      <organization>UiO</organization>
+      <organizationUrl>http://www.uio.no/</organizationUrl>
+    </developer>
+  </developers>
+
+  <licenses>
+    <license>
+      <name>BSD</name>
+      <url>http://opensource.org/licenses/BSD-2-Clause</url>
+    </license>
+  </licenses>
+
+  <scm>
+    <url>lp:dhis2</url>
+  </scm>
+
+  <issueManagement>
+    <system>GitHub</system>
+    <url>https://github.com/dhis2/dhis2-antlr-expression-parser</url>
+  </issueManagement>
+
+  <url>https://github.com/dhis2/dhis2-antlr-expression-parser</url>
 
   <dependencies>
 
@@ -54,6 +88,7 @@
     <antlr4.visitor>true</antlr4.visitor>
     <antlr4.listener>true</antlr4.listener>
   </properties>
+
 
   <profiles>
     <profile>
@@ -114,10 +149,36 @@
               </execution>
             </executions>
           </plugin>
+          <plugin>
+            <groupId>org.sonatype.plugins</groupId>
+            <artifactId>nexus-staging-maven-plugin</artifactId>
+            <version>1.6.8</version>
+            <extensions>true</extensions>
+            <configuration>
+              <serverId>ossrh</serverId>
+              <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+              <autoReleaseAfterClose>true</autoReleaseAfterClose>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.6</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
         </plugins>
       </build>
     </profile>
   </profiles>
+
   <build>
     <plugins>
       <plugin>
@@ -140,6 +201,32 @@
           <target>7</target>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>3.0.1</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.0.0</version>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
   <distributionManagement>
@@ -148,9 +235,5 @@
       <name>Sonatype OSS</name>
       <url>https://oss.sonatype.org/content/repositories/snapshots</url>
     </snapshotRepository>
-    <repository>
-      <id>ossrh</id>
-      <url>https://oss.sonatype.org/content/repositories/releases</url>
-    </repository>
   </distributionManagement>
 </project>
