@@ -36,3 +36,4 @@ jobs:
         with:
           nexus_username: ${{ secrets.nexus_username }}
           nexus_password: ${{ secrets.nexus_password }}
+          maven_profiles: "branch"

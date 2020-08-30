@@ -113,7 +113,7 @@ public interface Cache<V>
     /**
      * Returns the type of the cache. IN_MEMORY or REDIS or NONE.
      *
-     * @return
+     * @return the type of cache
      */
     CacheType getCacheType();
 }
