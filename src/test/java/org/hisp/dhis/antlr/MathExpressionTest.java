@@ -90,6 +90,6 @@ public class MathExpressionTest
     }
 
     private double evaluateDouble( String expression ) {
-        return castDouble( evaluate( expression ) );
+        return (double) evaluate( expression );
     }
 }
