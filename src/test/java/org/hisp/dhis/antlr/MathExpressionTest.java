@@ -7,13 +7,13 @@ import org.junit.runners.JUnit4;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+import static org.hisp.dhis.antlr.AntlrParserUtils.castDouble;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 @RunWith( JUnit4.class )
 public class MathExpressionTest
 {
-
     private TestExpressionVisitor visitor = new TestExpressionVisitor();
 
     @Test
@@ -53,6 +53,21 @@ public class MathExpressionTest
     }
 
     @Test
+    public void testLog() {
+        assertEquals( 4.605170, evaluateDouble( "log(100)" ), .000001 );
+        assertEquals( -0.693147, evaluateDouble( "log( .5 )" ), .000001 );
+        assertEquals( 3, evaluateDouble( "log(8,2)" ), .000001 );
+        assertEquals( 2, evaluateDouble( "log(256, 16)" ), .000001 );
+        assertEquals( 2, evaluateDouble( "log( 100, 10 )" ), .000001 );
+    }
+
+    @Test
+    public void testLog10() {
+        assertEquals( 2, evaluateDouble( "log10(100)" ), .000001 );
+        assertEquals( -0.301030, evaluateDouble( "log10( .5 )" ), .000001 );
+    }
+
+    @Test
     public void testPower() {
         assertEquals( 1.0, evaluate( "1^10" ) );
         assertEquals( 25.0, evaluate( "5^2" ) );
@@ -70,8 +85,11 @@ public class MathExpressionTest
         assertEquals( Double.NaN, evaluate( "1.0%( 1 - 1 )" ) );
     }
 
-    private Object evaluate(String expression) {
+    private Object evaluate( String expression ) {
         return Parser.visit( expression, visitor );
     }
 
+    private double evaluateDouble( String expression ) {
+        return (double) evaluate( expression );
+    }
 }

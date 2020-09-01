@@ -29,6 +29,7 @@ package org.hisp.dhis.antlr;
  */
 
 import com.google.common.collect.ImmutableMap;
+import org.hisp.dhis.antlr.function.*;
 import org.hisp.dhis.antlr.operator.*;
 
 import java.util.Date;
@@ -48,6 +49,11 @@ public class AntlrParserUtils
     public final static boolean BOOLEAN_VALUE_IF_NULL = false;
 
     public final static ImmutableMap<Integer, AntlrExprItem> ANTLR_EXPRESSION_ITEMS = ImmutableMap.<Integer, AntlrExprItem>builder()
+
+        // Functions
+
+        .put( LOG, new AntlrFunctionLog() )
+        .put( LOG10, new AntlrFunctionLog10() )
 
         // Non-comparison operators
 

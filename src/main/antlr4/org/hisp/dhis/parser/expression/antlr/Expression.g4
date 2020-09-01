@@ -36,6 +36,8 @@ expr
     |   it='isNotNull(' expr ')'
     |   it='isNull(' expr ')'
     |   it='least(' expr (',' expr )* ')'
+    |   it='log(' expr (',' expr )? ')'
+    |   it='log10(' expr ')'
     |   expr '.' it= 'periodOffset(' WS* period=integerLiteral WS* ')'
 
     //  Aggergation functions (alphabetical)
@@ -241,6 +243,8 @@ IF              : 'if(';
 IS_NOT_NULL     : 'isNotNull(';
 IS_NULL         : 'isNull(';
 LEAST           : 'least(';
+LOG             : 'log(';
+LOG10           : 'log10(';
 
 // Aggegation functions (alphabetical)
 
