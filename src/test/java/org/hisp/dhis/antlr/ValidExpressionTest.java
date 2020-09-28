@@ -1,6 +1,8 @@
 package org.hisp.dhis.antlr;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
@@ -10,6 +12,9 @@ import static org.junit.Assert.assertEquals;
 public class ValidExpressionTest
 {
     private TestExpressionVisitor visitor = new TestExpressionVisitor();
+
+    @Rule
+    public ExpectedException exception = ExpectedException.none();
 
     @Test
     public void testValidExpression() {
@@ -21,9 +26,31 @@ public class ValidExpressionTest
         assertEquals( "34.0", evaluate( "'34.0'" ) );
     }
 
-    @Test(expected = ParserException.class)
-    public void testInvalidSyntaxExpression() {
-        evaluate( "'2' >)_ 1" );
+    @Test
+    public void testInvalidSyntaxExpression1()
+    {
+        exception.expect( ParserException.class );
+        exception.expectMessage("Invalid string token '_' at line:1 character:10" );
+
+        evaluate( "1+1+1 > 0 _ 1" );
+    }
+
+    @Test
+    public void testInvalidSyntaxExpression2()
+    {
+        exception.expect( ParserException.class );
+        exception.expectMessage("Invalid string token 'a' at line:1 character:8" );
+
+        evaluate( "1 + 1 + a" );
+    }
+
+    @Test
+    public void testInvalidSyntaxExpression3()
+    {
+        exception.expect( ParserException.class );
+        exception.expectMessage("Invalid string token '(' at line:1 character:7" );
+
+        evaluate( "1 + 1  ( 2 + 2 )" );
     }
 
     @Test(expected = ParserExceptionWithoutContext.class)
