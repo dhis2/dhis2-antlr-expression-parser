@@ -29,6 +29,7 @@ package org.hisp.dhis.antlr;
  */
 
 import org.antlr.v4.runtime.BaseErrorListener;
+import org.antlr.v4.runtime.CommonToken;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
 
@@ -45,6 +46,10 @@ public class ParserErrorListener
     public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol,
         int line, int charPositionInLine, String msg, RecognitionException e)
     {
-        throw new ParserException( msg + " at character " + charPositionInLine );
+        CommonToken token = (CommonToken) offendingSymbol;
+
+        String userMessage = String.format( "Invalid string token '%s' at line:%d character:%d", token.getText(), line, charPositionInLine );
+
+        throw new ParserException( userMessage, msg + " at character " + charPositionInLine );
     }
 }

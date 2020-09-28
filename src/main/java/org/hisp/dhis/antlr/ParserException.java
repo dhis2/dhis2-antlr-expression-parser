@@ -36,8 +36,16 @@ package org.hisp.dhis.antlr;
 public class ParserException
     extends IllegalStateException
 {
+    private String devMessage;
+
     public ParserException( String message )
     {
         super( message );
+    }
+
+    public ParserException( String message, String devMessage  )
+    {
+        super( message );
+        this.devMessage = devMessage;
     }
 }
