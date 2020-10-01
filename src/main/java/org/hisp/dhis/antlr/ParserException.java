@@ -48,4 +48,9 @@ public class ParserException
         super( message );
         this.devMessage = devMessage;
     }
+
+    public String getDevMessage()
+    {
+        return devMessage;
+    }
 }
