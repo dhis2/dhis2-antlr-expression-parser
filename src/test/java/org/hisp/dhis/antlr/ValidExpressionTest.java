@@ -54,22 +54,25 @@ public class ValidExpressionTest
     }
 
     @Test(expected = ParserExceptionWithoutContext.class)
-    public void testExpressionWithValidSyntaxAndNotSupportedItem() {
+    public void testExpressionWithValidSyntaxAndNotSupportedItem()
+    {
         evaluate( "2 > #{not_supported}" );
     }
 
     @Test(expected = ParserException.class)
-    public void testExpressionWithValidSyntaxAndNotSupportedVariable() {
+    public void testExpressionWithValidSyntaxAndNotSupportedVariable()
+    {
         evaluate( "2 > V{not_supported}" );
     }
 
     @Test(expected = ParserExceptionWithoutContext.class)
-    public void testExpressionWithValidSyntaxAndNotSupportedAttribute() {
+    public void testExpressionWithValidSyntaxAndNotSupportedAttribute()
+    {
         evaluate( "2 > A{not_supported}" );
     }
 
-    private Object evaluate(String expression) {
+    private Object evaluate( String expression )
+    {
         return Parser.visit( expression, visitor );
     }
-
 }

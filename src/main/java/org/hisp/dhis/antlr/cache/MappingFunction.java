@@ -34,5 +34,5 @@ package org.hisp.dhis.antlr.cache;
  */
 public interface MappingFunction<V>
 {
-    V getValue(String key);
+    V getValue( String key );
 }

@@ -121,19 +121,21 @@ public class Parser
     // -------------------------------------------------------------------------
 
     /**
-     * Gets the ANTLR4 parse tree for the given expression string,
-     * from the cache if possible.
+     * Gets the ANTLR4 parse tree for the given expression string, from the
+     * cache if possible.
      *
      * @param expr the expression to parse.
      * @return the ANTLR4 parse tree.
      */
     private static ParseTree getParseTree( String expr, boolean useCache )
     {
-        if (!useCache) {
+        if ( !useCache )
+        {
             return createParseTree( expr );
         }
 
-        if (EXPRESSION_PARSE_TREES == null ) {
+        if ( EXPRESSION_PARSE_TREES == null )
+        {
             initializeCache();
         }
 
