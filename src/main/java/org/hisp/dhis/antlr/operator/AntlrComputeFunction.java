@@ -37,8 +37,8 @@ import java.util.List;
 import static org.hisp.dhis.parser.expression.antlr.ExpressionParser.ExprContext;
 
 /**
- * A function that computes the result from the arguments, where if any
- * of the arguments are null, then the result is null.
+ * A function that computes the result from the arguments, where if any of the
+ * arguments are null or Double.NaN, then the result is null or Double.NaN.
  *
  * @author Jim Grace
  */
@@ -54,9 +54,9 @@ public abstract class AntlrComputeFunction
         {
             Object value = visitor.visit( expr );
 
-            if ( value == null )
+            if ( value == null || ( value instanceof Double && Double.isNaN( (Double) value ) ) )
             {
-                return null;
+                return value;
             }
 
             values.add( value );

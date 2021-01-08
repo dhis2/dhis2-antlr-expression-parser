@@ -43,6 +43,7 @@ public class MathExpressionTest
         assertEquals( -0.7, evaluate( "-1.4/( 1 + 1 )" ) );
         assertEquals( 1.0, evaluate( "( 1 / 1000 ) * 1000" ) );
         assertEquals( Double.NaN, evaluate( "1.0/( 1 - 1 )" ) );
+        assertEquals( Double.NaN, evaluate( "80 + 4 / 0" ) );
     }
 
     @Test
