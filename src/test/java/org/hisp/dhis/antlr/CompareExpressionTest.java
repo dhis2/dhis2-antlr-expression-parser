@@ -68,7 +68,13 @@ public class CompareExpressionTest
     @Test
     public void testCompareDifferentTypes() {
         assertEquals( true, evaluate( "2 == '2'" ) );
+        assertEquals( true, evaluate( "2 == '2.0'" ) );
+        assertEquals( true, evaluate( "2.0 == '2'" ) );
+        assertEquals( true, evaluate( "2.0 == '2.0'" ) );
         assertEquals( true, evaluate( "'2' == 2" ) );
+        assertEquals( true, evaluate( "'2' == 2.0" ) );
+        assertEquals( true, evaluate( "'2.0' == 2" ) );
+        assertEquals( true, evaluate( "'2.0' == 2.0" ) );
         assertEquals( true, evaluate( "'hi' == \"hi\"" ) );
         assertEquals( true, evaluate( "'true' == true" ) );
         assertEquals( true, evaluate( "true == 'true'" ) );
