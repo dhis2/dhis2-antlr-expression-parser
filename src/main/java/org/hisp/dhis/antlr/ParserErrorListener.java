@@ -48,7 +48,19 @@ public class ParserErrorListener
     {
         CommonToken token = (CommonToken) offendingSymbol;
 
-        String userMessage = String.format( "Invalid string token '%s' at line:%d character:%d", token.getText(), line, charPositionInLine );
+        String reason;
+
+        if ( token == null )  // uncovered syntax error
+        {
+            reason = "syntax error";
+        }
+        else                  // covered syntax error
+        {
+            reason = token.getText();
+        }
+
+        String userMessage = String.format( "Invalid string token '%s' at line:%d character:%d",
+            reason, line, charPositionInLine );
 
         throw new ParserException( userMessage, msg + " at character " + charPositionInLine );
     }
