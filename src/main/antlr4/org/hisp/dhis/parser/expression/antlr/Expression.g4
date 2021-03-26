@@ -79,6 +79,7 @@ expr
     |   it='d2:hasValue(' WS* '#{' programRuleVariableName '}' WS* ')'
     |   it='d2:hasValue(' WS* programRuleStringVariableName WS* ')'
     |   it='d2:hasValue(' WS* 'A{' uid0=UID '}' WS* ')'
+    |   it='d2:hasValue(' WS* 'A{' programRuleVariableName '}' WS* ')'
     |   it='d2:hasValue(' WS* 'V{' programVariable '}' WS* ')'
     |   it='d2:inOrgUnitGroup(' expr ')'
     |   it='d2:lastEventDate(' expr ')'
