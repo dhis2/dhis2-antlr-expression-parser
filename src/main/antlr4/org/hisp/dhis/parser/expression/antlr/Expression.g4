@@ -118,18 +118,16 @@ expr
     |   it='d2:zScoreWFH(' expr ',' expr ',' expr ')'
 
     //  Data items
-    |   it='#{' uid0=UID (wild1='.*')? '}'
 
+    |   it='#{' uid0=UID (wild1='.*')? '}'
     |   it='#{' uid0=UID '.' uid1=UID '}'
     |   it='#{' uid0=UID '.' uid1=UID wild2='.*' '}'
     |   it='#{' uid0=UID '.*.' uid2=UID '}'
     |   it='#{' uid0=UID '.' uid1=UID '.' uid2=UID '}'
-
     |   it='#{' uid0=UID '.' uid1=PREFIXED_UID '}'
     |   it='#{' uid0=UID '.' uid1=PREFIXED_UID wild2='.*' '}'
     |   it='#{' uid0=UID '.*.' uid2=PREFIXED_UID '}'
     |   it='#{' uid0=UID '.' uid1=PREFIXED_UID '.' uid2=PREFIXED_UID'}'
-
     |   it='#{' programRuleVariableName '}'
     |   it='A{' uid0=UID '.' uid1=UID '}' // Program attribute in expressions (indicator, etc.)
     |   it='A{' uid0=UID '}' // Program attribute in program indicator expressions
@@ -409,11 +407,12 @@ UID :   Alpha
     ;
 
 PREFIXED_UID
-    :  PREFIX UID
+    :   PREFIX UID
     ;
 
 PREFIX
-    : 'co:';
+    :   'co:'
+    ;
 
 // In addition to its use in parsing program rule variables,
 // IDENTIFIER has the effect of requiring spaces between words,
