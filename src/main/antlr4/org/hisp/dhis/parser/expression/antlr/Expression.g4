@@ -118,27 +118,6 @@ expr
     |   it='d2:zScoreWFH(' expr ',' expr ',' expr ')'
 
     //  Data items
-
-|   it='#{' uid0=UID (wild1='.*')? '}'
-    |   it='#{' uid0=UID '.' uid1=UID '}'
-    |   it='#{' uid0=UID '.' uid1=UID wild2='.*' '}'
-    |   it='#{' uid0=UID '.*.' uid2=UID '}'
-    |   it='#{' uid0=UID '.' uid1=UID '.' uid2=UID '}'
-    |   it='#{' programRuleVariableName '}'
-    |   it='A{' uid0=UID '.' uid1=UID '}' // Program attribute in expressions (indicator, etc.)
-    |   it='A{' uid0=UID '}' // Program attribute in program indicator expressions
-    |   it='A{' programRuleVariableName '}'
-    |   it='C{' uid0=UID '}'
-    |   it='D{' uid0=UID '.' uid1=UID '}'
-    |   it='I{' uid0=UID '}'
-    |   it='N{' uid0=UID '}' // Indicator
-    |   it='OUG{' uid0=UID '}'
-    |   it='PS_EVENTDATE:' WS* uid0=UID
-    |   it='R{' uid0=UID '.' REPORTING_RATE_TYPE '}'
-    |   it='[days]'
-//////////
-
-
     |   it='#{' uid0=UID (wild1='.*')? '}'
 
     |   it='#{' uid0=UID '.' uid1=UID '}'
