@@ -11,14 +11,21 @@ expression  // The expression must last until the end of the string
     ;
 
 expr
-    // Allow whitespace on either side of any expression
+    //  Allow whitespace on either side of any expression
 
     :   WS+ expr
     |   expr WS+
 
-    //  Operators (in precedence order)
+    //  Parentheses
 
     |   it='(' expr ')'
+
+    //  Dot notation functions (alphabetical)
+
+    |   expr it= '.periodOffset(' WS* period=integerLiteral WS* ')'
+
+    //  Operators (in precedence order)
+
     |   <assoc=right> expr it='^' expr
     |   it=('+' | '-' | '!' | 'not') expr
     |   expr it=('*' | '/' | '%') expr
@@ -38,7 +45,6 @@ expr
     |   it='least(' expr (',' expr )* ')'
     |   it='log(' expr (',' expr )? ')'
     |   it='log10(' expr ')'
-    |   expr '.' it= 'periodOffset(' WS* period=integerLiteral WS* ')'
 
     //  Aggergation functions (alphabetical)
 
@@ -117,7 +123,7 @@ expr
     |   it='d2:zScoreWFA(' expr ',' expr ',' expr ')'
     |   it='d2:zScoreWFH(' expr ',' expr ',' expr ')'
 
-    //  Data items
+    //  Data items (alphabetical)
 
     |   it='#{' uid0=UID (wild1='.*')? '}'
     |   it='#{' uid0=UID '.' uid1=UID '}'
@@ -219,9 +225,16 @@ programRuleVariablePart
 // Assign token names to parser symbols
 // -----------------------------------------------------------------------------
 
-// Operators
+// Parentheses
 
 PAREN : '(';
+
+// Dot notation functions (alphabetical)
+
+PERIOD_OFFSET   : '.periodOffset(';
+
+// Operators
+
 PLUS  : '+';
 MINUS : '-';
 POWER : '^';
@@ -243,7 +256,6 @@ VERTICAL_BAR_2      : '||';
 
 // Functions (alphabetical)
 
-PERIOD_OFFSET   : 'periodOffset(';
 FIRST_NON_NULL  : 'firstNonNull(';
 GREATEST        : 'greatest(';
 IF              : 'if(';
@@ -335,7 +347,7 @@ D2_ZSCOREHFA            : 'd2:zScoreHFA(';
 D2_ZSCOREWFA            : 'd2:zScoreWFA(';
 D2_ZSCOREWFH            : 'd2:zScoreWFH(';
 
-// Items (alphabetical by symbol)
+// Data Items (alphabetical by symbol)
 
 HASH_BRACE  : '#{';
 A_BRACE     : 'A{';
