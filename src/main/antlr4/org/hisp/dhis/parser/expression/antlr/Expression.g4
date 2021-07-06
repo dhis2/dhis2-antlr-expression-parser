@@ -126,8 +126,7 @@ expr
     |   it='#{' uid0=UID '.' uid1=UID '.' uid2=UID '}'
     |   it='#{' uid0=UID '.' uid1=PREFIXED_UID '}'
     |   it='#{' uid0=UID '.' uid1=PREFIXED_UID wild2='.*' '}'
-    |   it='#{' uid0=UID '.*.' uid2=PREFIXED_UID '}'
-    |   it='#{' uid0=UID '.' uid1=PREFIXED_UID '.' uid2=PREFIXED_UID'}'
+    |   it='#{' uid0=UID '.' uid1=PREFIXED_UID '.' uid2=UID '}'
     |   it='#{' programRuleVariableName '}'
     |   it='A{' uid0=UID '.' uid1=UID '}' // Program attribute in expressions (indicator, etc.)
     |   it='A{' uid0=UID '}' // Program attribute in program indicator expressions
