@@ -120,13 +120,10 @@ expr
     //  Data items
 
     |   it='#{' uid0=UID (wild1='.*')? '}'
-    |   it='#{' uid0=UID '.' uid1=UID '}'
-    |   it='#{' uid0=UID '.' uid1=UID wild2='.*' '}'
+    |   it='#{' uid0=UID '.' uid1=(UID | TAGGED_UID1) '}'
+    |   it='#{' uid0=UID '.' uid1=(UID | TAGGED_UID1) wild2='.*' '}'
     |   it='#{' uid0=UID '.*.' uid2=UID '}'
-    |   it='#{' uid0=UID '.' uid1=UID '.' uid2=UID '}'
-    |   it='#{' uid0=UID '.' uid1=PREFIXED_UID '}'
-    |   it='#{' uid0=UID '.' uid1=PREFIXED_UID wild2='.*' '}'
-    |   it='#{' uid0=UID '.' uid1=PREFIXED_UID '.' uid2=UID '}'
+    |   it='#{' uid0=UID '.' uid1=(UID | TAGGED_UID1) '.' uid2=UID '}'
     |   it='#{' programRuleVariableName '}'
     |   it='A{' uid0=UID '.' uid1=UID '}' // Program attribute in expressions (indicator, etc.)
     |   it='A{' uid0=UID '}' // Program attribute in program indicator expressions
@@ -405,11 +402,12 @@ UID :   Alpha
         AlphaNum AlphaNum AlphaNum AlphaNum AlphaNum
     ;
 
-PREFIXED_UID
-    :   PREFIX UID
+TAGGED_UID1
+    :   CO_TAG UID
     ;
 
-PREFIX
+// UID TAGS (alphabetical)
+CO_TAG
     :   'co:'
     ;
 
