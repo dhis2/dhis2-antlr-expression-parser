@@ -128,8 +128,8 @@ expr
     |   it='#{' uid0=(UID | TAGGED_UID0) (wild1='.*')? '}'
     |   it='#{' uid0=(UID | TAGGED_UID0) '.' uid1=(UID | TAGGED_UID1) '}'
     |   it='#{' uid0=(UID | TAGGED_UID0) '.' uid1=(UID | TAGGED_UID1) wild2='.*' '}'
-    |   it='#{' uid0=(UID | TAGGED_UID0) '.*.' uid2=(UID | TAGGED_UID1) '}'
-    |   it='#{' uid0=(UID | TAGGED_UID0) '.' uid1=(UID | TAGGED_UID1) '.' uid2=(UID | TAGGED_UID2) '}'
+    |   it='#{' uid0=(UID | TAGGED_UID0) '.*.' uid2=UID '}'
+    |   it='#{' uid0=(UID | TAGGED_UID0) '.' uid1=(UID | TAGGED_UID1) '.' uid2=UID '}'
     |   it='#{' programRuleVariableName '}'
     |   it='A{' uid0=UID '.' uid1=UID '}' // Program attribute in expressions (indicator, etc.)
     |   it='A{' uid0=UID '}' // Program attribute in program indicator expressions
@@ -418,17 +418,10 @@ TAGGED_UID0
     :   DE_GROUP_TAG UID
     ;
 
-
 TAGGED_UID1
     :   CO_TAG UID
     |   CO_GROUP_TAG UID ('&' UID)*
     ;
-
-TAGGED_UID2
-    :   CO_TAG UID
-    |   CO_GROUP_TAG UID ('&' UID)*
-    ;
-
 
 // UID TAGS (alphabetical)
 CO_TAG
@@ -440,7 +433,8 @@ CO_GROUP_TAG
     ;
 
 DE_GROUP_TAG
-    :  'deGroup:';
+    :  'deGroup:'
+    ;
 
 // In addition to its use in parsing program rule variables,
 // IDENTIFIER has the effect of requiring spaces between words,
