@@ -474,4 +474,3 @@ fragment EscapeSequence
 fragment HexDigit
     :   [0-9a-fA-F]
     ;
-
