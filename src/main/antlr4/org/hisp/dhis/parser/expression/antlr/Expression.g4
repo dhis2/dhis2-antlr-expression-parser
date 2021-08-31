@@ -45,6 +45,8 @@ expr
     |   it='least(' expr (',' expr )* ')'
     |   it='log(' expr (',' expr )? ')'
     |   it='log10(' expr ')'
+    |   it='orgUnit.ancestor(' WS* UID WS* (',' WS* UID WS* )* ')'
+    |   it='orgUnit.group(' WS* UID WS* (',' WS* UID WS* )* ')'
 
     //  Aggergation functions (alphabetical)
 
@@ -264,6 +266,8 @@ IS_NULL         : 'isNull(';
 LEAST           : 'least(';
 LOG             : 'log(';
 LOG10           : 'log10(';
+ORGUNIT_ANCESTOR: 'orgUnit.ancestor(';
+ORGUNIT_GROUP   : 'orgUnit.group(';
 
 // Aggegation functions (alphabetical)
 
