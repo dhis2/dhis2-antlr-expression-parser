@@ -13,6 +13,21 @@ public class LogicalExpressionTest
     private TestExpressionVisitor visitor = new TestExpressionVisitor();
 
     @Test
+    public void testNumericLiteralsAsBooleans() {
+        assertEquals( true, evaluate( "1 and 2" ) );
+        assertEquals( true, evaluate( "1 && 2" ) );
+        assertEquals( false, evaluate( "0 && 1" ) );
+        assertEquals( false, evaluate( "0 && 1" ) );
+        assertEquals( false, evaluate( "0 && 0" ) );
+        assertEquals( false, evaluate( "1.0 && 0" ) );
+    }
+
+    @Test(expected = ParserExceptionWithoutContext.class)
+    public void testDoubleAsBoolean() {
+        assertEquals( true, evaluate( "1.1 and 2" ) );
+    }
+
+    @Test
     public void testAnd() {
         assertEquals( true, evaluate( "true and true" ) );
         assertEquals( true, evaluate( "true && true" ) );
