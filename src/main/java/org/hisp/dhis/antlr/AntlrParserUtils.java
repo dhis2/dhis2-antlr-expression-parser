@@ -280,6 +280,10 @@ public class AntlrParserUtils
         {
             return object.toString();
         }
+        else if ( clazz == Boolean.class && object % 1 == 0 )
+        {
+            return object != 0.0;
+        }
         else if ( clazz != Double.class )
         {
             throw new ParserExceptionWithoutContext( "Found number when expecting " + clazz.getSimpleName() );
