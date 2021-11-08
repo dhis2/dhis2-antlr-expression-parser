@@ -282,7 +282,7 @@ public class AntlrParserUtils
         }
         else if ( clazz == Boolean.class && object % 1 == 0 )
         {
-            return Boolean.parseBoolean( object.toString() );
+            return object != 0.0;
         }
         else if ( clazz != Double.class )
         {
