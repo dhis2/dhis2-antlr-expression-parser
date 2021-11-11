@@ -37,8 +37,10 @@ import java.util.List;
 import static org.hisp.dhis.parser.expression.antlr.ExpressionParser.ExprContext;
 
 /**
- * A function that computes the result from the arguments, where if any of the
- * arguments are null or Double.NaN, then the result is null or Double.NaN.
+ * A function that computes the result from expression arguments.
+ * <p>
+ * This abstract class evaluates the expression arguments and makes the
+ * resulting values available to the subclass as a List.
  *
  * @author Jim Grace
  */
@@ -54,7 +56,7 @@ public abstract class AntlrComputeFunction
         {
             Object value = visitor.visit( expr );
 
-            if ( value == null || ( value instanceof Double && Double.isNaN( (Double) value ) ) )
+            if ( invalidArg( value ) )
             {
                 return value;
             }
@@ -63,6 +65,15 @@ public abstract class AntlrComputeFunction
         }
 
         return compute( values );
+    }
+
+    /**
+     * The default for a subclass is that if any of the arguments are null or
+     * Double.NaN, then return null or Double.NaN, respectively.
+     */
+    protected boolean invalidArg( Object value )
+    {
+        return value == null || ( value instanceof Double && Double.isNaN( (Double) value ) );
     }
 
     /**

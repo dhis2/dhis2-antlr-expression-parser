@@ -74,6 +74,11 @@ public class CompareExpressionTest
         assertEquals( true, evaluate( "true == 'true'" ) );
     }
 
+    @Test
+    public void testDivideByZero() {
+        assertEquals( false, evaluate( "2 == 2 / 0" ) );
+    }
+
     private Object evaluate(String expression) {
         return Parser.visit( expression, visitor );
     }
