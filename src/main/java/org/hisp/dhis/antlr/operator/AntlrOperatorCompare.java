@@ -79,4 +79,15 @@ public abstract class AntlrOperatorCompare
             throw new InternalParserException( "trying to compare class " + o1.getClass().getName() );
         }
     }
+
+    /**
+     * For a comparison, if any argument value is null, return null.
+     * (If any arguemnt is Double.NaN, the comparison should proceed and
+     * return a Boolean value.)
+     */
+    @Override
+    protected boolean invalidArg( Object value )
+    {
+        return value == null;
+    }
 }
