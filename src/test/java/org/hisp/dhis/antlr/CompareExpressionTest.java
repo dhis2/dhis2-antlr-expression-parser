@@ -9,7 +9,6 @@ import static org.junit.Assert.assertEquals;
 @RunWith( JUnit4.class )
 public class CompareExpressionTest
 {
-
     private TestExpressionVisitor visitor = new TestExpressionVisitor();
 
     @Test
@@ -17,10 +16,13 @@ public class CompareExpressionTest
         assertEquals( true, evaluate( "'2' > 1" ) );
         assertEquals( false, evaluate( "1 > '2'" ) );
         assertEquals( false, evaluate( "'1' > '2'" ) );
+        assertEquals( true, evaluate( "'10' > '2'" ) );
         assertEquals( true, evaluate( "'1' > '-2'" ) );
         assertEquals( true, evaluate( "'-1' > '-2'" ) );
         assertEquals( false, evaluate( "'-1' > '2'" ) );
         assertEquals( false, evaluate( "'2' > ( 1 + 1 )" ) );
+        assertEquals( true, evaluate( "true > 0" ) );
+        assertEquals( false, evaluate( "false > 1" ) );
     }
 
     @Test
@@ -28,6 +30,10 @@ public class CompareExpressionTest
         assertEquals( true, evaluate( "2 > 1" ) );
         assertEquals( false, evaluate( "1 > 2" ) );
         assertEquals( false, evaluate( "2 > ( 1 + 1 )" ) );
+        assertEquals( true, evaluate( "true > false" ) );
+        assertEquals( false, evaluate( "true > true" ) );
+        assertEquals( false, evaluate( "'abc' > 'abc'" ) );
+        assertEquals( false, evaluate( "'abc' > 'def'" ) );
     }
 
     @Test
@@ -35,6 +41,10 @@ public class CompareExpressionTest
         assertEquals( true, evaluate( "2 >= 1" ) );
         assertEquals( false, evaluate( "1 >= 2" ) );
         assertEquals( true, evaluate( "2 >= ( 1 + 1 )" ) );
+        assertEquals( true, evaluate( "true >= false" ) );
+        assertEquals( true, evaluate( "true >= true" ) );
+        assertEquals( true, evaluate( "'abc' >= 'abc'" ) );
+        assertEquals( false, evaluate( "'abc' >= 'def'" ) );
     }
 
     @Test
@@ -42,6 +52,10 @@ public class CompareExpressionTest
         assertEquals( false, evaluate( "2 < 1" ) );
         assertEquals( true, evaluate( "1 < 2" ) );
         assertEquals( false, evaluate( "2 < ( 1 + 1 )" ) );
+        assertEquals( false, evaluate( "true < false" ) );
+        assertEquals( false, evaluate( "true < true" ) );
+        assertEquals( false, evaluate( "'abc' < 'abc'" ) );
+        assertEquals( true, evaluate( "'abc' < 'def'" ) );
     }
 
     @Test
@@ -49,6 +63,10 @@ public class CompareExpressionTest
         assertEquals( false, evaluate( "2 <= 1" ) );
         assertEquals( true, evaluate( "1 <= 2" ) );
         assertEquals( true, evaluate( "2 <= ( 1 + 1 )" ) );
+        assertEquals( false, evaluate( "true <= false" ) );
+        assertEquals( true, evaluate( "true <= true" ) );
+        assertEquals( true, evaluate( "'abc' <= 'abc'" ) );
+        assertEquals( true, evaluate( "'abc' <= 'def'" ) );
     }
 
     @Test
@@ -82,5 +100,4 @@ public class CompareExpressionTest
     private Object evaluate(String expression) {
         return Parser.visit( expression, visitor );
     }
-
 }

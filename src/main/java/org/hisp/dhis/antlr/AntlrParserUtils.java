@@ -188,106 +188,132 @@ public class AntlrParserUtils
      */
     public static Object castClass( Class<?> clazz, Object object )
     {
+        if ( object == null )
+        {
+            return null;
+        }
+
+        if ( clazz == Double.class && makeDouble( object ) != null )
+        {
+            return makeDouble( object );
+        }
+
+        if ( clazz == Boolean.class && makeBoolean( object ) != null )
+        {
+            return makeBoolean( object );
+        }
+
+        if ( clazz == Date.class && makeDate( object ) != null )
+        {
+            return makeDate( object );
+        }
+
+        if ( clazz == String.class )
+        {
+            return makeString( object );
+        }
+
+        throw new ParserExceptionWithoutContext( "Could not cast " + object.getClass().getSimpleName() +
+            " '" + object + "' to " + clazz.getSimpleName() );
+    }
+
+    /**
+     * Makes object a Double, if it can be done.
+     *
+     * @param object object to convert
+     * @return object's Double value, else null
+     */
+    public static Double makeDouble( Object object )
+    {
         if ( object instanceof Double )
         {
-            return castDoubleObject( (Double) object, clazz );
+            return (Double) object;
         }
 
         if ( object instanceof String )
         {
-            return castStringObject( (String) object, clazz );
+            try
+            {
+                return Double.parseDouble( (String) object );
+            }
+            catch ( Exception e )
+            {
+                return null;
+            }
         }
 
+        return null;
+    }
+
+    /**
+     * Makes object a Boolean, if it can be done.
+     *
+     * @param object object to convert
+     * @return object's Boolean value, else null
+     */
+    public static Boolean makeBoolean( Object object )
+    {
         if ( object instanceof Boolean )
         {
-            return castBooleanObject( (Boolean) object, clazz );
+            return (Boolean) object;
         }
 
-        try
+        if ( object instanceof Double && (Double) object % 1 == 0 )
         {
-            return clazz.cast( object );
+            return (Double) object != 0.0;
         }
-        catch ( Exception e )
+
+        if ( object instanceof String )
         {
-            throw new ParserExceptionWithoutContext( "Could not cast value to " + clazz.getSimpleName() );
+            if ( "true".equalsIgnoreCase( (String) object ) )
+            {
+                return true;
+            }
+
+            if ( "false".equalsIgnoreCase( (String) object ) )
+            {
+                return false;
+            }
         }
+
+        return null;
     }
 
-    private static Object castBooleanObject( Boolean object, Class<?> clazz )
+    /**
+     * Makes object a Date, if it can be done.
+     *
+     * @param object object to convert
+     * @return object's Date value, else null
+     */
+    public static Date makeDate( Object object )
     {
-        if (clazz == String.class)
+        if ( object instanceof Date )
         {
-            return object.toString();
+            return (Date) object;
         }
-        else if (clazz == Boolean.class )
-        {
-            return object;
-        }
-        else
-        {
-            throw new ParserExceptionWithoutContext( "Found boolean value when expecting " + clazz.getSimpleName() );
-        }
-    }
-
-    private static Object castStringObject( String object, Class<?> clazz )
-    {
-        if ( clazz == Date.class )
+        if ( object instanceof String )
         {
             try
             {
-                return parseDate( object );
+                return parseDate( (String) object );
             }
             catch ( Exception e )
             {
-                throw new ParserExceptionWithoutContext( "Found '" + object + "' when expecting a date" );
+                return null;
             }
         }
-        else if ( clazz == Double.class )
-        {
-            try
-            {
-                return Double.parseDouble( object );
-            }
-            catch ( Exception e )
-            {
-                throw new ParserExceptionWithoutContext( "Found '" + object + "' when expecting a number" );
-            }
-        }
-        else if ( clazz == Boolean.class )
-        {
-            try
-            {
-                return Boolean.parseBoolean( object );
-            }
-            catch ( Exception e )
-            {
-                throw new ParserExceptionWithoutContext( "Found '" + object + "' when expecting a boolean" );
-            }
-        }
-        else if ( clazz == String.class )
-        {
-            return object;
-        }
-        else
-        {
-            throw new ParserExceptionWithoutContext( "Found string when expecting " + clazz.getSimpleName() );
-        }
+
+        return null;
     }
 
-    private static Object castDoubleObject( Double object, Class<?> clazz )
+    /**
+     * Makes object a String.
+     *
+     * @param object object to convert
+     * @return object's String value
+     */
+    public static String makeString( Object object )
     {
-        if ( clazz == String.class )
-        {
-            return object.toString();
-        }
-        else if ( clazz == Boolean.class && object % 1 == 0 )
-        {
-            return object != 0.0;
-        }
-        else if ( clazz != Double.class )
-        {
-            throw new ParserExceptionWithoutContext( "Found number when expecting " + clazz.getSimpleName() );
-        }
-        return clazz.cast( object );
+        return object.toString();
     }
 }

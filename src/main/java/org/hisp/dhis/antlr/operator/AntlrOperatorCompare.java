@@ -28,12 +28,11 @@ package org.hisp.dhis.antlr.operator;
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import org.apache.commons.lang3.math.NumberUtils;
-import org.hisp.dhis.antlr.InternalParserException;
-
 import java.util.List;
 
-import static org.hisp.dhis.antlr.AntlrParserUtils.*;
+import static org.hisp.dhis.antlr.AntlrParserUtils.makeBoolean;
+import static org.hisp.dhis.antlr.AntlrParserUtils.makeDouble;
+import static org.hisp.dhis.antlr.AntlrParserUtils.makeString;
 
 /**
  * Abstract class for compare operators
@@ -44,7 +43,7 @@ public abstract class AntlrOperatorCompare
     extends AntlrComputeFunction
 {
     /**
-     * Compares two Doubles, Strings or Booleans.
+     * Compares two Doubles, Booleans, or Strings.
      *
      * @param values the values to compare
      * @return the results of the comparision.
@@ -54,30 +53,17 @@ public abstract class AntlrOperatorCompare
         Object o1 = values.get( 0 );
         Object o2 = values.get( 1 );
 
-        if ( o1 == null || o2 == null )
+        if ( makeDouble( o1 ) != null && makeDouble( o2 ) != null )
         {
-            throw new InternalParserException( "found null when comparing '" + o1 + "' with '" + o2 + "'" );
+            return ( makeDouble( o1 ) ).compareTo( makeDouble( o2 ) );
         }
-        else if ( o1 instanceof Double  )
+
+        if ( makeBoolean( o1 ) != null && makeBoolean( o2 ) != null )
         {
-            return ((Double) o1).compareTo( castDouble( o2 ) );
+            return ( makeBoolean( o1 ) ).compareTo( makeBoolean( o2 ) );
         }
-        else if ( o1 instanceof String && NumberUtils.isCreatable((String) o1))
-        {
-            return Double.valueOf((String) o1).compareTo( castDouble( o2 ) );
-        }
-        else if ( o1 instanceof String )
-        {
-            return ((String) o1).compareTo( castString( o2 ) );
-        }
-        else if ( o1 instanceof Boolean )
-        {
-            return ((Boolean) o1).compareTo( castBoolean( o2 ) );
-        }
-        else
-        {
-            throw new InternalParserException( "trying to compare class " + o1.getClass().getName() );
-        }
+
+        return ( makeString( o1 ) ).compareTo( makeString( o2 ) );
     }
 
     /**
