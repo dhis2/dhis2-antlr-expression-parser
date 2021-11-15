@@ -51,7 +51,7 @@ expr
     //  Aggergation functions (alphabetical)
 
     |   it='avg(' expr ')'
-    |   it='count(' expr ')'
+    |   it='count(' (WS* distinct='distinct')? expr ')'
     |   it='max(' expr ')'
     |   it='median(' expr ')'
     |   it='min(' expr ')'
