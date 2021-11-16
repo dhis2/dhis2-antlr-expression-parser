@@ -193,19 +193,21 @@ public class AntlrParserUtils
             return null;
         }
 
-        if ( clazz == Double.class && makeDouble( object ) != null )
+        Object result;
+
+        if ( clazz == Double.class && ( result = makeDouble( object ) ) != null )
         {
-            return makeDouble( object );
+            return result;
         }
 
-        if ( clazz == Boolean.class && makeBoolean( object ) != null )
+        if ( clazz == Boolean.class && ( result = makeBoolean( object ) ) != null )
         {
-            return makeBoolean( object );
+            return result;
         }
 
-        if ( clazz == Date.class && makeDate( object ) != null )
+        if ( clazz == Date.class && ( result = makeDate( object ) ) != null )
         {
-            return makeDate( object );
+            return result;
         }
 
         if ( clazz == String.class )

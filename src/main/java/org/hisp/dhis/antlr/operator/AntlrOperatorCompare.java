@@ -53,14 +53,20 @@ public abstract class AntlrOperatorCompare
         Object o1 = values.get( 0 );
         Object o2 = values.get( 1 );
 
-        if ( makeDouble( o1 ) != null && makeDouble( o2 ) != null )
+        Double d1;
+        Double d2;
+
+        if ( ( d1 = makeDouble( o1 ) ) != null && ( d2 = makeDouble( o2 ) ) != null )
         {
-            return ( makeDouble( o1 ) ).compareTo( makeDouble( o2 ) );
+            return ( d1.compareTo( d2 ) );
         }
 
-        if ( makeBoolean( o1 ) != null && makeBoolean( o2 ) != null )
+        Boolean b1;
+        Boolean b2;
+
+        if ( ( b1 = makeBoolean( o1 ) ) != null && ( b2 = makeBoolean( o2 ) ) != null )
         {
-            return ( makeBoolean( o1 ) ).compareTo( makeBoolean( o2 ) );
+            return ( b1.compareTo( b2 ) );
         }
 
         return ( makeString( o1 ) ).compareTo( makeString( o2 ) );
