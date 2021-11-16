@@ -15,11 +15,10 @@ public class CompareExpressionTest
     public void testGreaterForDifferentTypes() {
         assertEquals( true, evaluate( "'2' > 1" ) );
         assertEquals( false, evaluate( "1 > '2'" ) );
-        assertEquals( false, evaluate( "'1' > '2'" ) );
-        assertEquals( true, evaluate( "'10' > '2'" ) );
-        assertEquals( true, evaluate( "'1' > '-2'" ) );
-        assertEquals( true, evaluate( "'-1' > '-2'" ) );
-        assertEquals( false, evaluate( "'-1' > '2'" ) );
+        assertEquals( false, evaluate( "'10' > '2'" ) );
+        assertEquals( true, evaluate( "10 > '2'" ) );
+        assertEquals( true, evaluate( "'1' > -2" ) );
+        assertEquals( true, evaluate( "'-10' < -1" ) );
         assertEquals( false, evaluate( "'2' > ( 1 + 1 )" ) );
         assertEquals( true, evaluate( "true > 0" ) );
         assertEquals( false, evaluate( "false > 1" ) );

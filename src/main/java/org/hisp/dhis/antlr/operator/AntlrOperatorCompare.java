@@ -28,6 +28,8 @@ package org.hisp.dhis.antlr.operator;
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import org.hisp.dhis.antlr.ParserExceptionWithoutContext;
+
 import java.util.List;
 
 import static org.hisp.dhis.antlr.AntlrParserUtils.makeBoolean;
@@ -46,7 +48,7 @@ public abstract class AntlrOperatorCompare
      * Compares two Doubles, Booleans, or Strings.
      *
      * @param values the values to compare
-     * @return the results of the comparision.
+     * @return the results of the comparison.
      */
     protected int compare( List<Object> values )
     {
@@ -56,25 +58,36 @@ public abstract class AntlrOperatorCompare
         Double d1;
         Double d2;
 
-        if ( ( d1 = makeDouble( o1 ) ) != null && ( d2 = makeDouble( o2 ) ) != null )
+        if ( ( o1 instanceof Double || o2 instanceof Double ) &&
+            ( d1 = makeDouble( o1 ) ) != null &&
+            ( d2 = makeDouble( o2 ) ) != null )
         {
-            return ( d1.compareTo( d2 ) );
+            return d1.compareTo( d2 );
         }
 
         Boolean b1;
         Boolean b2;
 
-        if ( ( b1 = makeBoolean( o1 ) ) != null && ( b2 = makeBoolean( o2 ) ) != null )
+        if ( ( o1 instanceof Boolean || o2 instanceof Boolean ) &&
+            ( b1 = makeBoolean( o1 ) ) != null &&
+            ( b2 = makeBoolean( o2 ) ) != null )
         {
-            return ( b1.compareTo( b2 ) );
+            return b1.compareTo( b2 );
         }
 
-        return ( makeString( o1 ) ).compareTo( makeString( o2 ) );
+        if ( o1 instanceof String || o2 instanceof String )
+        {
+            return makeString( o1 ).compareTo( makeString( o2 ) );
+        }
+
+        throw new ParserExceptionWithoutContext( "Could not compare " +
+            o1.getClass().getSimpleName() + " '" + o1 + "' to " +
+            o2.getClass().getSimpleName() + " '" + o2 + "'" );
     }
 
     /**
      * For a comparison, if any argument value is null, return null.
-     * (If any arguemnt is Double.NaN, the comparison should proceed and
+     * (If any argument is Double.NaN, the comparison should proceed and
      * return a Boolean value.)
      */
     @Override
