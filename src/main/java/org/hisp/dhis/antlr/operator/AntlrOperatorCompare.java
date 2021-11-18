@@ -28,12 +28,13 @@ package org.hisp.dhis.antlr.operator;
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import org.apache.commons.lang3.math.NumberUtils;
-import org.hisp.dhis.antlr.InternalParserException;
+import org.hisp.dhis.antlr.ParserExceptionWithoutContext;
 
 import java.util.List;
 
-import static org.hisp.dhis.antlr.AntlrParserUtils.*;
+import static org.hisp.dhis.antlr.AntlrParserUtils.makeBoolean;
+import static org.hisp.dhis.antlr.AntlrParserUtils.makeDouble;
+import static org.hisp.dhis.antlr.AntlrParserUtils.makeString;
 
 /**
  * Abstract class for compare operators
@@ -44,45 +45,49 @@ public abstract class AntlrOperatorCompare
     extends AntlrComputeFunction
 {
     /**
-     * Compares two Doubles, Strings or Booleans.
+     * Compares two Doubles, Booleans, or Strings.
      *
      * @param values the values to compare
-     * @return the results of the comparision.
+     * @return the results of the comparison.
      */
     protected int compare( List<Object> values )
     {
         Object o1 = values.get( 0 );
         Object o2 = values.get( 1 );
 
-        if ( o1 == null || o2 == null )
+        Double d1;
+        Double d2;
+
+        if ( ( o1 instanceof Double || o2 instanceof Double ) &&
+            ( d1 = makeDouble( o1 ) ) != null &&
+            ( d2 = makeDouble( o2 ) ) != null )
         {
-            throw new InternalParserException( "found null when comparing '" + o1 + "' with '" + o2 + "'" );
+            return d1.compareTo( d2 );
         }
-        else if ( o1 instanceof Double  )
+
+        Boolean b1;
+        Boolean b2;
+
+        if ( ( o1 instanceof Boolean || o2 instanceof Boolean ) &&
+            ( b1 = makeBoolean( o1 ) ) != null &&
+            ( b2 = makeBoolean( o2 ) ) != null )
         {
-            return ((Double) o1).compareTo( castDouble( o2 ) );
+            return b1.compareTo( b2 );
         }
-        else if ( o1 instanceof String && NumberUtils.isCreatable((String) o1))
+
+        if ( o1 instanceof String || o2 instanceof String )
         {
-            return Double.valueOf((String) o1).compareTo( castDouble( o2 ) );
+            return makeString( o1 ).compareTo( makeString( o2 ) );
         }
-        else if ( o1 instanceof String )
-        {
-            return ((String) o1).compareTo( castString( o2 ) );
-        }
-        else if ( o1 instanceof Boolean )
-        {
-            return ((Boolean) o1).compareTo( castBoolean( o2 ) );
-        }
-        else
-        {
-            throw new InternalParserException( "trying to compare class " + o1.getClass().getName() );
-        }
+
+        throw new ParserExceptionWithoutContext( "Could not compare " +
+            o1.getClass().getSimpleName() + " '" + o1 + "' to " +
+            o2.getClass().getSimpleName() + " '" + o2 + "'" );
     }
 
     /**
      * For a comparison, if any argument value is null, return null.
-     * (If any arguemnt is Double.NaN, the comparison should proceed and
+     * (If any argument is Double.NaN, the comparison should proceed and
      * return a Boolean value.)
      */
     @Override
