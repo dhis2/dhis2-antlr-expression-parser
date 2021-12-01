@@ -23,6 +23,7 @@ expr
     //  Dot notation functions (alphabetical)
 
     |   expr it= '.periodOffset(' WS* period=integerLiteral WS* ')'
+    |   expr it= '.stageOffset(' WS* stage=integerLiteral WS* ')'
 
     //  Operators (in precedence order)
 
@@ -234,6 +235,7 @@ PAREN : '(';
 // Dot notation functions (alphabetical)
 
 PERIOD_OFFSET   : '.periodOffset(';
+STAGE_OFFSET    : '.stageOffset(';
 
 // Operators
 
