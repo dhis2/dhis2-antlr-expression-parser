@@ -86,6 +86,11 @@ expr
     |   it='d2:countIfZeroPos(' WS* 'A{' programRuleVariableName '}' WS* ')'
     |   it='d2:countIfZeroPos(' WS* programRuleStringVariableName WS* ')'
     |   it='d2:daysBetween(' expr ',' expr ')'
+    |   it='d2:extractDataMatrixValue(' expr ',' WS* '#{' uid0=UID '.' uid1=UID '}' WS* ')'
+    |   it='d2:extractDataMatrixValue(' expr ',' WS* '#{' programRuleVariableName '}' WS* ')'
+    |   it='d2:extractDataMatrixValue(' expr ',' WS* programRuleVariableName WS* ')'
+    |   it='d2:extractDataMatrixValue(' expr ',' WS* 'A{' uid0=UID '.' uid1=UID '}' WS* ')'
+    |   it='d2:extractDataMatrixValue(' expr ',' WS* 'A{' programRuleVariableName '}' WS* ')'
     |   it='d2:floor(' expr ')'
     |   it='d2:hasUserRole(' expr ')'
     |   it='d2:hasValue(' WS* '#{' uid0=UID '.' uid1=UID '}' WS* ')'
@@ -317,41 +322,42 @@ V_ZERO_POS_VALUE_COUNT  : 'zero_pos_value_count';
 
 // Program functions (alphabetical)
 
-D2_ADD_DAYS             : 'd2:addDays(';
-D2_CEIL                 : 'd2:ceil(';
-D2_CONCATENATE          : 'd2:concatenate(';
-D2_CONDITION            : 'd2:condition(';
-D2_COUNT                : 'd2:count(';
-D2_COUNT_IF_CONDITION   : 'd2:countIfCondition(';
-D2_COUNT_IF_VALUE       : 'd2:countIfValue(';
-D2_COUNT_IF_ZERO_POS    : 'd2:countIfZeroPos(';
-D2_DAYS_BETWEEN         : 'd2:daysBetween(';
-D2_FLOOR                : 'd2:floor(';
-D2_HAS_USER_ROLE        : 'd2:hasUserRole(';
-D2_HAS_VALUE            : 'd2:hasValue(';
-D2_IN_ORG_UNIT_GROUP    : 'd2:inOrgUnitGroup(';
-D2_LAST_EVENT_DATE      : 'd2:lastEventDate(';
-D2_LEFT                 : 'd2:left(';
-D2_LENGTH               : 'd2:length(';
-D2_MAX_VALUE            : 'd2:maxValue(';
-D2_MINUTES_BETWEEN      : 'd2:minutesBetween(';
-D2_MIN_VALUE            : 'd2:minValue(';
-D2_MODULUS              : 'd2:modulus(';
-D2_MONTHS_BETWEEN       : 'd2:monthsBetween(';
-D2_OIZP                 : 'd2:oizp(';
-D2_RELATIONSHIP_COUNT   : 'd2:relationshipCount(';
-D2_RIGHT                : 'd2:right(';
-D2_ROUND                : 'd2:round(';
-D2_SPLIT                : 'd2:split(';
-D2_SUBSTRING            : 'd2:substring(';
-D2_VALIDATE_PATTERN     : 'd2:validatePattern(';
-D2_WEEKS_BETWEEN        : 'd2:weeksBetween(';
-D2_YEARS_BETWEEN        : 'd2:yearsBetween(';
-D2_ZING                 : 'd2:zing(';
-D2_ZPVC                 : 'd2:zpvc(';
-D2_ZSCOREHFA            : 'd2:zScoreHFA(';
-D2_ZSCOREWFA            : 'd2:zScoreWFA(';
-D2_ZSCOREWFH            : 'd2:zScoreWFH(';
+D2_ADD_DAYS                 : 'd2:addDays(';
+D2_CEIL                     : 'd2:ceil(';
+D2_CONCATENATE              : 'd2:concatenate(';
+D2_CONDITION                : 'd2:condition(';
+D2_COUNT                    : 'd2:count(';
+D2_COUNT_IF_CONDITION       : 'd2:countIfCondition(';
+D2_COUNT_IF_VALUE           : 'd2:countIfValue(';
+D2_COUNT_IF_ZERO_POS        : 'd2:countIfZeroPos(';
+D2_DAYS_BETWEEN             : 'd2:daysBetween(';
+D2_EXTRACT_DATA_MATRIX_VALUE: 'd2:extractDataMatrixValue(';
+D2_FLOOR                    : 'd2:floor(';
+D2_HAS_USER_ROLE            : 'd2:hasUserRole(';
+D2_HAS_VALUE                : 'd2:hasValue(';
+D2_IN_ORG_UNIT_GROUP        : 'd2:inOrgUnitGroup(';
+D2_LAST_EVENT_DATE          : 'd2:lastEventDate(';
+D2_LEFT                     : 'd2:left(';
+D2_LENGTH                   : 'd2:length(';
+D2_MAX_VALUE                : 'd2:maxValue(';
+D2_MINUTES_BETWEEN          : 'd2:minutesBetween(';
+D2_MIN_VALUE                : 'd2:minValue(';
+D2_MODULUS                  : 'd2:modulus(';
+D2_MONTHS_BETWEEN           : 'd2:monthsBetween(';
+D2_OIZP                     : 'd2:oizp(';
+D2_RELATIONSHIP_COUNT       : 'd2:relationshipCount(';
+D2_RIGHT                    : 'd2:right(';
+D2_ROUND                    : 'd2:round(';
+D2_SPLIT                    : 'd2:split(';
+D2_SUBSTRING                : 'd2:substring(';
+D2_VALIDATE_PATTERN         : 'd2:validatePattern(';
+D2_WEEKS_BETWEEN            : 'd2:weeksBetween(';
+D2_YEARS_BETWEEN            : 'd2:yearsBetween(';
+D2_ZING                     : 'd2:zing(';
+D2_ZPVC                     : 'd2:zpvc(';
+D2_ZSCOREHFA                : 'd2:zScoreHFA(';
+D2_ZSCOREWFA                : 'd2:zScoreWFA(';
+D2_ZSCOREWFH                : 'd2:zScoreWFH(';
 
 // Data Items (alphabetical by symbol)
 
