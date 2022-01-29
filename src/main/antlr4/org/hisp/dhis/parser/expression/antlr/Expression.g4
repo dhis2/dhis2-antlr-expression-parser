@@ -22,6 +22,8 @@ expr
 
     //  Dot notation functions (alphabetical)
 
+    |   expr it= '.maxDate(' WS* maxDate=DATE_LITERAL WS* ')'
+    |   expr it= '.minDate(' WS* minDate=DATE_LITERAL WS* ')'
     |   expr it= '.periodOffset(' WS* period=integerLiteral WS* ')'
     |   expr it= '.stageOffset(' WS* stage=integerLiteral WS* ')'
 
@@ -235,6 +237,8 @@ PAREN : '(';
 
 // Dot notation functions (alphabetical)
 
+MAX_DATE        : '.maxDate(';
+MIN_DATE        : '.minDate(';
 PERIOD_OFFSET   : '.periodOffset(';
 STAGE_OFFSET    : '.stageOffset(';
 
@@ -398,6 +402,10 @@ NUMERIC_LITERAL
 BOOLEAN_LITERAL
     :   'true'
     |   'false'
+    ;
+
+DATE_LITERAL
+    :   [1-9] [0-9] [0-9] [0-9] '-' [0-1]? [0-9] '-' [0-3]? [0-9]
     ;
 
 // Quoted UID could also be a string literal. It must come first.
