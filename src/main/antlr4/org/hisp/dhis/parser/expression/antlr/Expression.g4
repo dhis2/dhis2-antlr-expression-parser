@@ -22,6 +22,7 @@ expr
 
     //  Dot notation functions (alphabetical)
 
+    |   expr it= '.aggregationType(' WS* aggregationType=IDENTIFIER WS* ')'
     |   expr it= '.maxDate(' WS* maxDate=DATE_LITERAL WS* ')'
     |   expr it= '.minDate(' WS* minDate=DATE_LITERAL WS* ')'
     |   expr it= '.periodOffset(' WS* period=integerLiteral WS* ')'
@@ -49,7 +50,9 @@ expr
     |   it='log(' expr (',' expr )? ')'
     |   it='log10(' expr ')'
     |   it='orgUnit.ancestor(' WS* UID WS* (',' WS* UID WS* )* ')'
+    |   it='orgUnit.dataSet(' WS* UID WS* (',' WS* UID WS* )* ')'
     |   it='orgUnit.group(' WS* UID WS* (',' WS* UID WS* )* ')'
+    |   it='orgUnit.program(' WS* UID WS* (',' WS* UID WS* )* ')'
 
     //  Aggergation functions (alphabetical)
 
@@ -237,6 +240,7 @@ PAREN : '(';
 
 // Dot notation functions (alphabetical)
 
+AGGREGATION_TYPE: '.aggregationType(';
 MAX_DATE        : '.maxDate(';
 MIN_DATE        : '.minDate(';
 PERIOD_OFFSET   : '.periodOffset(';
@@ -274,7 +278,9 @@ LEAST           : 'least(';
 LOG             : 'log(';
 LOG10           : 'log10(';
 ORGUNIT_ANCESTOR: 'orgUnit.ancestor(';
+ORGUNIT_DATASET : 'orgUnit.dataSet(';
 ORGUNIT_GROUP   : 'orgUnit.group(';
+ORGUNIT_PROGRAM : 'orgUnit.program(';
 
 // Aggegation functions (alphabetical)
 
