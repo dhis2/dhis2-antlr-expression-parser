@@ -53,6 +53,7 @@ expr
     |   it='orgUnit.dataSet(' WS* UID WS* (',' WS* UID WS* )* ')'
     |   it='orgUnit.group(' WS* UID WS* (',' WS* UID WS* )* ')'
     |   it='orgUnit.program(' WS* UID WS* (',' WS* UID WS* )* ')'
+    |   it='subExpression(' expr ')'
 
     //  Aggergation functions (alphabetical)
 
@@ -281,6 +282,7 @@ ORGUNIT_ANCESTOR: 'orgUnit.ancestor(';
 ORGUNIT_DATASET : 'orgUnit.dataSet(';
 ORGUNIT_GROUP   : 'orgUnit.group(';
 ORGUNIT_PROGRAM : 'orgUnit.program(';
+SUB_EXPRESSION  : 'subExpression(';
 
 // Aggegation functions (alphabetical)
 
