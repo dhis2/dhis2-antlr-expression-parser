@@ -53,6 +53,7 @@ expr
     |   it='orgUnit.dataSet(' WS* UID WS* (',' WS* UID WS* )* ')'
     |   it='orgUnit.group(' WS* UID WS* (',' WS* UID WS* )* ')'
     |   it='orgUnit.program(' WS* UID WS* (',' WS* UID WS* )* ')'
+    |   it='removeZeros(' expr ')'
     |   it='subExpression(' expr ')'
 
     //  Aggergation functions (alphabetical)
@@ -159,6 +160,7 @@ expr
 
     //  Literals
 
+    |   it='null'
     |   numericLiteral
     |   stringLiteral
     |   booleanLiteral
@@ -282,6 +284,7 @@ ORGUNIT_ANCESTOR: 'orgUnit.ancestor(';
 ORGUNIT_DATASET : 'orgUnit.dataSet(';
 ORGUNIT_GROUP   : 'orgUnit.group(';
 ORGUNIT_PROGRAM : 'orgUnit.program(';
+REMOVE_ZEROS    : 'removeZeros(';
 SUB_EXPRESSION  : 'subExpression(';
 
 // Aggegation functions (alphabetical)
@@ -381,6 +384,10 @@ R_BRACE     : 'R{';
 V_BRACE     : 'V{';
 X_BRACE     : 'X{';
 DAYS        : '[days]';
+
+// Literals
+
+NULL        : 'null';
 
 // -----------------------------------------------------------------------------
 // Lexer rules
