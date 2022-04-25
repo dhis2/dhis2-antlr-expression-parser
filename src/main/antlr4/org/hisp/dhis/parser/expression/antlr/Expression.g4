@@ -182,6 +182,7 @@ programVariable   // (alphabtical)
     |   var='event_date'
     |   var='event_id'
     |   var='event_status'
+    |   var='scheduled_event_status'
     |   var='execution_date'
     |   var='incident_date'
     |   var='org_unit_count'
