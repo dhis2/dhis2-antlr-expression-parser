@@ -179,7 +179,9 @@ programVariable   // (alphabtical)
     |   var='enrollment_status'
     |   var='environment'
     |   var='event_count'
+    |   var='scheduled_event_count'
     |   var='event_date'
+    |   var='scheduled_date'
     |   var='event_id'
     |   var='event_status'
     |   var='execution_date'
@@ -315,7 +317,9 @@ V_ENROLLMENT_ID         : 'enrollment_id';
 V_ENROLLMENT_STATUS     : 'enrollment_status';
 V_ENVIRONMENT           : 'environment';
 V_EVENT_COUNT           : 'event_count';
+V_SCHEDULED_EVENT_COUNT : 'scheduled_event_count';
 V_EVENT_DATE            : 'event_date';
+V_SCHEDULED_DATE        : 'scheduled_date';
 V_EVENT_ID              : 'event_id';
 V_EVENT_STATUS          : 'event_status';
 V_EXECUTION_DATE        : 'execution_date';

@@ -7,7 +7,7 @@
   <packaging>jar</packaging>
   <name>DHIS Antlr Expression Parser</name>
   <groupId>org.hisp.dhis.parser</groupId>
-  <version>1.0.27</version>
+  <version>1.0.28-SNAPSHOT</version>
 
   <description>Antlr Expression Parser</description>
 
@@ -194,7 +194,7 @@
       <plugin>
         <groupId>org.antlr</groupId>
         <artifactId>antlr4-maven-plugin</artifactId>
-        <version>4.7.2</version>
+        <version>4.9.3</version>
         <executions>
           <execution>
             <goals>
