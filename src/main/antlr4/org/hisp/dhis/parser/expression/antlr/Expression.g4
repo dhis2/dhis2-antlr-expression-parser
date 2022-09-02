@@ -27,6 +27,7 @@ expr
     |   expr it= '.minDate(' WS* minDate=DATE_LITERAL WS* ')'
     |   expr it= '.periodOffset(' WS* period=integerLiteral WS* ')'
     |   expr it= '.stageOffset(' WS* stage=integerLiteral WS* ')'
+    |   expr it= '.yearToDate()'
 
     //  Operators (in precedence order)
 
@@ -153,6 +154,8 @@ expr
     |   it='PS_EVENTDATE:' WS* uid0=UID
     |   it='R{' uid0=UID '.' REPORTING_RATE_TYPE '}'
     |   it='[days]'
+    |   it='[periodInYear]'
+    |   it='[yearlyPeriodCount]'
 
     //  Program indicator/rule built-in variables
 
@@ -250,6 +253,7 @@ MAX_DATE        : '.maxDate(';
 MIN_DATE        : '.minDate(';
 PERIOD_OFFSET   : '.periodOffset(';
 STAGE_OFFSET    : '.stageOffset(';
+YEAR_TO_DATE    : '.yearToDate()';
 
 // Operators
 
@@ -376,18 +380,20 @@ D2_ZSCOREWFH                : 'd2:zScoreWFH(';
 
 // Data Items (alphabetical by symbol)
 
-HASH_BRACE  : '#{';
-A_BRACE     : 'A{';
-C_BRACE     : 'C{';
-D_BRACE     : 'D{';
-I_BRACE     : 'I{';
-N_BRACE     : 'N{';
-OUG_BRACE   : 'OUG{';
-PS_EVENTDATE: 'PS_EVENTDATE:';
-R_BRACE     : 'R{';
-V_BRACE     : 'V{';
-X_BRACE     : 'X{';
-DAYS        : '[days]';
+HASH_BRACE          : '#{';
+A_BRACE             : 'A{';
+C_BRACE             : 'C{';
+D_BRACE             : 'D{';
+I_BRACE             : 'I{';
+N_BRACE             : 'N{';
+OUG_BRACE           : 'OUG{';
+PS_EVENTDATE        : 'PS_EVENTDATE:';
+R_BRACE             : 'R{';
+V_BRACE             : 'V{';
+X_BRACE             : 'X{';
+DAYS                : '[days]';
+PERIOD_IN_YEAR      : '[periodInYear]';
+YEARLY_PERIOD_COUNT : '[yearlyPeriodCount]';
 
 // Literals
 
