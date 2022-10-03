@@ -123,7 +123,7 @@ expr
     |   it='d2:oizp(' expr ')'
     |   it='d2:relationshipCount(' WS* QUOTED_UID? WS* ')'
     |   it='d2:right(' expr ',' expr ')'
-    |   it='d2:round(' expr ')'
+    |   it='d2:round(' expr (',' WS* integerLiteral WS* )?  ')'
     |   it='d2:split(' expr ',' expr ',' expr ')'
     |   it='d2:substring(' expr ',' expr ',' expr ')'
     |   it='d2:validatePattern(' expr ',' expr ')'
