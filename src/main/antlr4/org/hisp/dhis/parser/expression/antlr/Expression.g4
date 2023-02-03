@@ -45,7 +45,7 @@ expr
     |   it='firstNonNull(' expr (',' expr )* ')'
     |   it='greatest(' expr (',' expr )* ')'
     |   it='if(' expr ',' expr ',' expr ')'
-    |   it='is(' expr 'in' expr (',' expr )* ')'
+    |   it='is(' expr WS 'in' WS expr (',' expr )* ')'
     |   it='isNotNull(' expr ')'
     |   it='isNull(' expr ')'
     |   it='least(' expr (',' expr )* ')'

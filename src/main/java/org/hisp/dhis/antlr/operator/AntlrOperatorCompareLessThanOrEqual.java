@@ -30,6 +30,8 @@ package org.hisp.dhis.antlr.operator;
 
 import java.util.List;
 
+import static org.hisp.dhis.antlr.AntlrParserUtils.compare;
+
 /**
  * Compare operator: less than or equal
  *
@@ -41,6 +43,6 @@ public class AntlrOperatorCompareLessThanOrEqual
     @Override
     public Object compute( List<Object> values )
     {
-        return compare( values ) <= 0;
+        return compare( values.get( 0 ), values.get( 1 ) ) <= 0;
     }
 }
