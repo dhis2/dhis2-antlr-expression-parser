@@ -28,14 +28,6 @@ package org.hisp.dhis.antlr.operator;
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import org.hisp.dhis.antlr.ParserExceptionWithoutContext;
-
-import java.util.List;
-
-import static org.hisp.dhis.antlr.AntlrParserUtils.makeBoolean;
-import static org.hisp.dhis.antlr.AntlrParserUtils.makeDouble;
-import static org.hisp.dhis.antlr.AntlrParserUtils.makeString;
-
 /**
  * Abstract class for compare operators
  *
@@ -44,47 +36,6 @@ import static org.hisp.dhis.antlr.AntlrParserUtils.makeString;
 public abstract class AntlrOperatorCompare
     extends AntlrComputeFunction
 {
-    /**
-     * Compares two Doubles, Booleans, or Strings.
-     *
-     * @param values the values to compare
-     * @return the results of the comparison.
-     */
-    protected int compare( List<Object> values )
-    {
-        Object o1 = values.get( 0 );
-        Object o2 = values.get( 1 );
-
-        Double d1;
-        Double d2;
-
-        if ( ( o1 instanceof Double || o2 instanceof Double ) &&
-            ( d1 = makeDouble( o1 ) ) != null &&
-            ( d2 = makeDouble( o2 ) ) != null )
-        {
-            return d1.compareTo( d2 );
-        }
-
-        Boolean b1;
-        Boolean b2;
-
-        if ( ( o1 instanceof Boolean || o2 instanceof Boolean ) &&
-            ( b1 = makeBoolean( o1 ) ) != null &&
-            ( b2 = makeBoolean( o2 ) ) != null )
-        {
-            return b1.compareTo( b2 );
-        }
-
-        if ( o1 instanceof String || o2 instanceof String )
-        {
-            return makeString( o1 ).compareTo( makeString( o2 ) );
-        }
-
-        throw new ParserExceptionWithoutContext( "Could not compare " +
-            o1.getClass().getSimpleName() + " '" + o1 + "' to " +
-            o2.getClass().getSimpleName() + " '" + o2 + "'" );
-    }
-
     /**
      * For a comparison, if any argument value is null, return null.
      * (If any argument is Double.NaN, the comparison should proceed and

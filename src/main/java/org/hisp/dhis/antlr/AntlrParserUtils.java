@@ -44,11 +44,11 @@ import static org.hisp.dhis.parser.expression.antlr.ExpressionParser.*;
  */
 public class AntlrParserUtils
 {
-    public final static double DOUBLE_VALUE_IF_NULL = 0.0;
+    public static final double DOUBLE_VALUE_IF_NULL = 0.0;
 
-    public final static boolean BOOLEAN_VALUE_IF_NULL = false;
+    public static final boolean BOOLEAN_VALUE_IF_NULL = false;
 
-    public final static ImmutableMap<Integer, AntlrExprItem> ANTLR_EXPRESSION_ITEMS = ImmutableMap.<Integer, AntlrExprItem>builder()
+    public static final ImmutableMap<Integer, AntlrExprItem> ANTLR_EXPRESSION_ITEMS = ImmutableMap.<Integer, AntlrExprItem>builder()
 
         // Functions
 
@@ -82,6 +82,11 @@ public class AntlrParserUtils
 
         .build();
 
+    private AntlrParserUtils()
+    {
+        throw new UnsupportedOperationException( "util" );
+    }
+
     /**
      * Trim quotes from the first and last characters of a string.
      * The string must be at least two characters long.
@@ -102,6 +107,45 @@ public class AntlrParserUtils
         }
 
         return str.substring(1, str.length() - 1);
+    }
+
+    /**
+     * Compares two Doubles, Booleans, or Strings.
+     *
+     * @param o1 the first value to compare
+     * @param o2 the second value to compare
+     * @return the results of the comparison
+     */
+    public static int compare( Object o1, Object o2 )
+    {
+        Double d1;
+        Double d2;
+
+        if ( ( o1 instanceof Double || o2 instanceof Double ) &&
+            ( d1 = makeDouble( o1 ) ) != null &&
+            ( d2 = makeDouble( o2 ) ) != null )
+        {
+            return d1.compareTo( d2 );
+        }
+
+        Boolean b1;
+        Boolean b2;
+
+        if ( ( o1 instanceof Boolean || o2 instanceof Boolean ) &&
+            ( b1 = makeBoolean( o1 ) ) != null &&
+            ( b2 = makeBoolean( o2 ) ) != null )
+        {
+            return b1.compareTo( b2 );
+        }
+
+        if ( o1 instanceof String || o2 instanceof String )
+        {
+            return makeString( o1 ).compareTo( makeString( o2 ) );
+        }
+
+        throw new ParserExceptionWithoutContext( "Could not compare " +
+            o1.getClass().getSimpleName() + " '" + o1 + "' to " +
+            o2.getClass().getSimpleName() + " '" + o2 + "'" );
     }
 
     /**
