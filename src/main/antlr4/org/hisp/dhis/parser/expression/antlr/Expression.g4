@@ -51,6 +51,8 @@ expr
     |   it='least(' expr (',' expr )* ')'
     |   it='log(' expr (',' expr )? ')'
     |   it='log10(' expr ')'
+    |   it='normDistCum(' expr (',' expr )? (',' expr )? ')'
+    |   it='normDistDen(' expr (',' expr )? (',' expr )? ')'
     |   it='orgUnit.ancestor(' WS* UID WS* (',' WS* UID WS* )* ')'
     |   it='orgUnit.dataSet(' WS* UID WS* (',' WS* UID WS* )* ')'
     |   it='orgUnit.group(' WS* UID WS* (',' WS* UID WS* )* ')'
@@ -288,6 +290,8 @@ IS_NULL         : 'isNull(';
 LEAST           : 'least(';
 LOG             : 'log(';
 LOG10           : 'log10(';
+NORM_DIST_CUM   : 'normDistCum(';
+NORM_DIST_DEN   : 'normDistDen(';
 ORGUNIT_ANCESTOR: 'orgUnit.ancestor(';
 ORGUNIT_DATASET : 'orgUnit.dataSet(';
 ORGUNIT_GROUP   : 'orgUnit.group(';
