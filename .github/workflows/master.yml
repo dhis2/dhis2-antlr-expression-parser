@@ -34,6 +34,8 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11.0.4
+      - name: Remove snapshot
+        run: mvn -B versions:set -DremoveSnapshot -DgenerateBackupPoms=false
       - name: Release Maven package
         uses: samuelmeuli/action-maven-publish@v1
         with:
