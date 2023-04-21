@@ -65,6 +65,19 @@ public class ValidExpressionTest
         evaluate( "2 > V{not_supported}" );
     }
 
+
+    @Test
+    public void testMultiLineComments()
+    {
+        assertEquals( true, evaluate( "true and true || 1 /* this is multi \n  line comment \r */" ) );
+    }
+
+    @Test
+    public void testSingleLineComments()
+    {
+        assertEquals( false, evaluate( "true and true && 0 <-- this is single line comment -->" ) );
+    }
+
     @Test(expected = ParserExceptionWithoutContext.class)
     public void testExpressionWithValidSyntaxAndNotSupportedAttribute()
     {
