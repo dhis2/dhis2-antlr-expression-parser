@@ -507,7 +507,7 @@ WS  :   [ \t\n\r]+
 // Comments
 
 SINGLE_LINE_COMMENT
-    :   ( '<--' ~[\r\n]* '-->') -> skip;
+    :   ('<--' ~[\r\n]* '-->') -> skip;
 
 
 MULTI_LINE_COMMENT
