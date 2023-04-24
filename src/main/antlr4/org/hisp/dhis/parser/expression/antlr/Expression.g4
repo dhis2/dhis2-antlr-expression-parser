@@ -243,8 +243,7 @@ programRuleVariablePart
     ;
 
 comments
-    : SINGLE_LINE_COMMENT
-    | MULTI_LINE_COMMENT
+    :   COMMENT
     ;
 
 // -----------------------------------------------------------------------------
@@ -506,12 +505,9 @@ WS  :   [ \t\n\r]+
 
 // Comments
 
-SINGLE_LINE_COMMENT
-    :   ('<--' ~[\r\n]* '-->') -> skip;
-
-
-MULTI_LINE_COMMENT
-    :   ('/*' .*? '*/') -> skip;
+COMMENT
+    :   ('/*' .*? '*/') -> skip
+    ;
 
 // Lexer fragments
 
