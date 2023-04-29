@@ -170,6 +170,7 @@ expr
     |   numericLiteral
     |   stringLiteral
     |   booleanLiteral
+    |   comments
     ;
 
 programVariable   // (alphabtical)
@@ -239,6 +240,10 @@ programRuleVariablePart
     |   WS
     |   '-'
     |   '.'
+    ;
+
+comments
+    :   COMMENT
     ;
 
 // -----------------------------------------------------------------------------
@@ -496,6 +501,12 @@ EMPTY
     ;
 
 WS  :   [ \t\n\r]+
+    ;
+
+// Comments
+
+COMMENT
+    :   ('/*' .*? '*/') -> skip
     ;
 
 // Lexer fragments
