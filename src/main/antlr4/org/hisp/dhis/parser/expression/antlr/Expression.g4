@@ -6,6 +6,11 @@ grammar Expression;
 // Parser rules
 // -----------------------------------------------------------------------------
 
+// Note: ANTLR symbols for optional or repeating:
+// ? -> 0 or 1
+// * -> 0 or more
+// + -> 1 or more
+
 expression  // The expression must last until the end of the string
     :   expr EOF
     ;
@@ -59,6 +64,7 @@ expr
     |   it='orgUnit.program(' WS* UID WS* (',' WS* UID WS* )* ')'
     |   it='removeZeros(' expr ')'
     |   it='subExpression(' expr ')'
+    |   it='textContains(' expr (',' expr )+ ')'
 
     //  Aggergation functions (alphabetical)
 
@@ -303,6 +309,7 @@ ORGUNIT_GROUP   : 'orgUnit.group(';
 ORGUNIT_PROGRAM : 'orgUnit.program(';
 REMOVE_ZEROS    : 'removeZeros(';
 SUB_EXPRESSION  : 'subExpression(';
+TEXT_CONTAINS   : 'textContains(';
 
 // Aggegation functions (alphabetical)
 
