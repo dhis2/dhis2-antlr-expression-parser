@@ -41,6 +41,6 @@ jobs:
         with:
           nexus_username: ${{ secrets.nexus_username }}
           nexus_password: ${{ secrets.nexus_password }}
-          gpg_private_key: ${{ secrets.gpg_private_key }}
-          gpg_passphrase: ${{ secrets.gpg_passphrase }}
+          gpg_private_key: ${{ secrets.PGP_PRIVATE_KEY }}
+          gpg_passphrase: ${{ secrets.PGP_PASSPHRASE }}
           maven_profiles: "master"
