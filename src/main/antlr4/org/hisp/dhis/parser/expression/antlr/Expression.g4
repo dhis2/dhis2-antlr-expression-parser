@@ -47,6 +47,8 @@ expr
 
     //  Functions (alphabetical)
 
+    |   it='contains(' expr (',' expr )+ ')'
+    |   it='containsItems(' expr (',' expr )+ ')'
     |   it='firstNonNull(' expr (',' expr )* ')'
     |   it='greatest(' expr (',' expr )* ')'
     |   it='if(' expr ',' expr ',' expr ')'
@@ -64,7 +66,6 @@ expr
     |   it='orgUnit.program(' WS* UID WS* (',' WS* UID WS* )* ')'
     |   it='removeZeros(' expr ')'
     |   it='subExpression(' expr ')'
-    |   it='textContains(' expr (',' expr )+ ')'
 
     //  Aggergation functions (alphabetical)
 
@@ -292,6 +293,8 @@ VERTICAL_BAR_2      : '||';
 
 // Functions (alphabetical)
 
+CONTAINS        : 'contains(';
+CONTAINS_ITEMS  : 'containsItems(';
 FIRST_NON_NULL  : 'firstNonNull(';
 GREATEST        : 'greatest(';
 IF              : 'if(';
@@ -309,7 +312,6 @@ ORGUNIT_GROUP   : 'orgUnit.group(';
 ORGUNIT_PROGRAM : 'orgUnit.program(';
 REMOVE_ZEROS    : 'removeZeros(';
 SUB_EXPRESSION  : 'subExpression(';
-TEXT_CONTAINS   : 'textContains(';
 
 // Aggegation functions (alphabetical)
 
