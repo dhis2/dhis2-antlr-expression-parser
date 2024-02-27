@@ -7,7 +7,7 @@
   <packaging>jar</packaging>
   <name>DHIS Antlr Expression Parser</name>
   <groupId>org.hisp.dhis.parser</groupId>
-  <version>1.0.36-SNAPSHOT</version>
+  <version>1.0.36</version>
 
   <description>Antlr Expression Parser</description>
 
