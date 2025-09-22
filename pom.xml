@@ -47,7 +47,7 @@
     <rootDir>../../</rootDir>
     <antlr4.visitor>true</antlr4.visitor>
     <antlr4.listener>true</antlr4.listener>
-    <antlr.version>4.9.3</antlr.version>
+    <antlr.version>4.13.2</antlr.version>
     <gpg.skip>true</gpg.skip>
   </properties>
   
