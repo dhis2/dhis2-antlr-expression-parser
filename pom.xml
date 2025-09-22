@@ -7,7 +7,7 @@
   <packaging>jar</packaging>
   <name>DHIS Antlr Expression Parser</name>
   <groupId>org.hisp.dhis.parser</groupId>
-  <version>1.0.37-SNAPSHOT</version>
+  <version>1.0.38-SNAPSHOT</version>
 
   <description>Antlr Expression Parser</description>
 
@@ -43,9 +43,15 @@
 
   <url>https://github.com/dhis2/dhis2-antlr-expression-parser</url>
 
+  <properties>
+    <rootDir>../../</rootDir>
+    <antlr4.visitor>true</antlr4.visitor>
+    <antlr4.listener>true</antlr4.listener>
+    <antlr.version>4.9.3</antlr.version>
+    <gpg.skip>true</gpg.skip>
+  </properties>
+  
   <dependencies>
-
-    <!-- ANTLR -->
     <dependency>
       <groupId>org.antlr</groupId>
       <artifactId>antlr4-runtime</artifactId>
@@ -54,7 +60,7 @@
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-text</artifactId>
-      <version>1.3</version> <!-- Do not update, it is needed to be compatible with java 7-->
+      <version>1.3</version> <!-- Do not update, must be compatible with Java 7-->
     </dependency>
     <dependency>
       <groupId>joda-time</groupId>
@@ -83,14 +89,6 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-  <properties>
-    <rootDir>../../</rootDir>
-    <antlr4.visitor>true</antlr4.visitor>
-    <antlr4.listener>true</antlr4.listener>
-    <antlr.version>4.9.3</antlr.version>
-    <gpg.skip>true</gpg.skip>
-  </properties>
-
 
   <profiles>
     <profile>
