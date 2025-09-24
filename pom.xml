@@ -5,7 +5,7 @@
 
   <artifactId>dhis-antlr-expression-parser</artifactId>
   <groupId>org.hisp.dhis.parser</groupId>
-  <version>1.0.38</version>
+  <version>1.0.39</version>
   
   <packaging>jar</packaging>
   
