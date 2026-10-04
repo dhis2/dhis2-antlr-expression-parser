@@ -1,7 +1,7 @@
 package org.hisp.dhis.antlr.cache;
 
 /*
- * Copyright (c) 2004-2020, University of Oslo
+ * Copyright (c) 2004-2026, University of Oslo
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -101,11 +101,13 @@ public class LocalCache<V> implements Cache<V>
         if ( value == null )
         {
             value = mappingFunction.getValue( key );
-        }
 
-        if ( value != null )
-        {
-            cache2kInstance.put( key, value );
+            // Only write on a miss. Writing on every hit restarts the expiry timer
+            // under cache2k's timer lock, which serialises concurrent readers.
+            if ( value != null )
+            {
+                cache2kInstance.put( key, value );
+            }
         }
         return Optional.fromNullable( value ).or( Optional.fromNullable( defaultValue ) );
     }
