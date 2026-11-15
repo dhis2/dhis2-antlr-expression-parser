@@ -66,6 +66,21 @@ public class ValidExpressionTest
     }
 
     @Test
+    public void testValidationRuleItemParses()
+    {
+        exception.expect( ParserExceptionWithoutContext.class );
+        exception.expectMessage( "Item VR{ not supported for this type of expression" );
+
+        evaluate( "2 > VR{abcdefghijk}" );
+    }
+
+    @Test(expected = ParserException.class)
+    public void testValidationRuleItemRequiresUid()
+    {
+        evaluate( "2 > VR{not_a_uid}" );
+    }
+
+    @Test
     public void testMultiLineComments()
     {
         assertEquals( true, evaluate( "true and true || 1 /* this is multi \n  line comment \r */" ) );

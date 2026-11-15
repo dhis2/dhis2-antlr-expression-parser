@@ -163,6 +163,7 @@ expr
     |   it='OUG{' uid0=UID '}'
     |   it='PS_EVENTDATE:' WS* uid0=UID
     |   it='R{' uid0=UID '.' REPORTING_RATE_TYPE '}'
+    |   it='VR{' uid0=UID '}' // Validation rule violation count
     |   it='[days]'
     |   it='[periodInYear]'
     |   it='[yearlyPeriodCount]'
@@ -410,6 +411,7 @@ OUG_BRACE           : 'OUG{';
 PS_EVENTDATE        : 'PS_EVENTDATE:';
 R_BRACE             : 'R{';
 V_BRACE             : 'V{';
+VR_BRACE            : 'VR{';
 X_BRACE             : 'X{';
 DAYS                : '[days]';
 PERIOD_IN_YEAR      : '[periodInYear]';
